@@ -1,0 +1,256 @@
+{
+  "ver": "1.0.6",
+  "importer": "sprite-atlas",
+  "imported": true,
+  "uuid": "a7126759-165d-4948-a268-46daafe7cdb3",
+  "files": [
+    ".plist",
+    ".json"
+  ],
+  "subMetas": {
+    "87528": {
+      "importer": "sprite-frame",
+      "uuid": "a7126759-165d-4948-a268-46daafe7cdb3@87528",
+      "displayName": "",
+      "id": "87528",
+      "name": "Planet_name_node_h",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 142,
+        "trimY": 49,
+        "width": 45,
+        "height": 46,
+        "rawWidth": 45,
+        "rawHeight": 46,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "7ca24fc9-0af0-43d1-9f9e-9600e5f9aa0d@6c48a",
+        "atlasUuid": "a7126759-165d-4948-a268-46daafe7cdb3"
+      },
+      "ver": "1.0.9",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "93ba3": {
+      "importer": "sprite-frame",
+      "uuid": "a7126759-165d-4948-a268-46daafe7cdb3@93ba3",
+      "displayName": "",
+      "id": "93ba3",
+      "name": "Planet_name_node_d",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 142,
+        "trimY": 1,
+        "width": 45,
+        "height": 46,
+        "rawWidth": 45,
+        "rawHeight": 46,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "7ca24fc9-0af0-43d1-9f9e-9600e5f9aa0d@6c48a",
+        "atlasUuid": "a7126759-165d-4948-a268-46daafe7cdb3"
+      },
+      "ver": "1.0.9",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "a6d4b": {
+      "importer": "sprite-frame",
+      "uuid": "a7126759-165d-4948-a268-46daafe7cdb3@a6d4b",
+      "displayName": "",
+      "id": "a6d4b",
+      "name": "Player_name_node_d",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 189,
+        "trimY": 1,
+        "width": 18,
+        "height": 71,
+        "rawWidth": 18,
+        "rawHeight": 71,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "7ca24fc9-0af0-43d1-9f9e-9600e5f9aa0d@6c48a",
+        "atlasUuid": "a7126759-165d-4948-a268-46daafe7cdb3"
+      },
+      "ver": "1.0.9",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "aba26": {
+      "importer": "sprite-frame",
+      "uuid": "a7126759-165d-4948-a268-46daafe7cdb3@aba26",
+      "displayName": "",
+      "id": "aba26",
+      "name": "Player_name_node_h",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": true,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 108,
+        "trimY": 110,
+        "width": 17,
+        "height": 71,
+        "rawWidth": 17,
+        "rawHeight": 71,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "7ca24fc9-0af0-43d1-9f9e-9600e5f9aa0d@6c48a",
+        "atlasUuid": "a7126759-165d-4948-a268-46daafe7cdb3"
+      },
+      "ver": "1.0.9",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "e245e": {
+      "importer": "sprite-frame",
+      "uuid": "a7126759-165d-4948-a268-46daafe7cdb3@e245e",
+      "displayName": "",
+      "id": "e245e",
+      "name": "Ship_count_node_d",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 122,
+        "trimY": 1,
+        "width": 18,
+        "height": 107,
+        "rawWidth": 18,
+        "rawHeight": 107,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "7ca24fc9-0af0-43d1-9f9e-9600e5f9aa0d@6c48a",
+        "atlasUuid": "a7126759-165d-4948-a268-46daafe7cdb3"
+      },
+      "ver": "1.0.9",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "c1373": {
+      "importer": "sprite-frame",
+      "uuid": "a7126759-165d-4948-a268-46daafe7cdb3@c1373",
+      "displayName": "",
+      "id": "c1373",
+      "name": "Ship_count_node_h",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": true,
+        "offsetX": 0,
+        "offsetY": -1,
+        "trimX": 1,
+        "trimY": 110,
+        "width": 17,
+        "height": 105,
+        "rawWidth": 17,
+        "rawHeight": 107,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "7ca24fc9-0af0-43d1-9f9e-9600e5f9aa0d@6c48a",
+        "atlasUuid": "a7126759-165d-4948-a268-46daafe7cdb3"
+      },
+      "ver": "1.0.9",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "74ae5": {
+      "importer": "sprite-frame",
+      "uuid": "a7126759-165d-4948-a268-46daafe7cdb3@74ae5",
+      "displayName": "",
+      "id": "74ae5",
+      "name": "gray_ship_d",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 1,
+        "offsetY": -1,
+        "trimX": 1,
+        "trimY": 1,
+        "width": 119,
+        "height": 107,
+        "rawWidth": 133,
+        "rawHeight": 133,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "7ca24fc9-0af0-43d1-9f9e-9600e5f9aa0d@6c48a",
+        "atlasUuid": "a7126759-165d-4948-a268-46daafe7cdb3"
+      },
+      "ver": "1.0.9",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "atlasTextureName": "solay_system_icon.png",
+    "format": 3,
+    "uuid": "a7126759-165d-4948-a268-46daafe7cdb3",
+    "textureUuid": "7ca24fc9-0af0-43d1-9f9e-9600e5f9aa0d@6c48a"
+  }
+}

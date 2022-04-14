@@ -1,0 +1,96 @@
+{
+  "ver": "2.1.10",
+  "importer": "fbx",
+  "imported": true,
+  "uuid": "be298b44-3783-4f1b-a9ef-e4c06a30d185",
+  "files": [],
+  "subMetas": {
+    "e6d33": {
+      "importer": "gltf-mesh",
+      "uuid": "be298b44-3783-4f1b-a9ef-e4c06a30d185@e6d33",
+      "displayName": "",
+      "id": "e6d33",
+      "name": "group2_pSphere8_Material0.mesh",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.1.0",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "7a3ca": {
+      "importer": "gltf-material",
+      "uuid": "be298b44-3783-4f1b-a9ef-e4c06a30d185@7a3ca",
+      "displayName": "",
+      "id": "7a3ca",
+      "name": "lambert2.material",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "55b43": {
+      "importer": "gltf-material",
+      "uuid": "be298b44-3783-4f1b-a9ef-e4c06a30d185@55b43",
+      "displayName": "",
+      "id": "55b43",
+      "name": "lambert3.material",
+      "userData": {
+        "gltfIndex": 1
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "6630c": {
+      "importer": "gltf-scene",
+      "uuid": "be298b44-3783-4f1b-a9ef-e4c06a30d185@6630c",
+      "displayName": "",
+      "id": "6630c",
+      "name": "shield.prefab",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.12",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "imageMetas": [],
+    "legacyFbxImporter": false,
+    "redirect": "be298b44-3783-4f1b-a9ef-e4c06a30d185@6630c",
+    "assetFinder": {
+      "meshes": [
+        "be298b44-3783-4f1b-a9ef-e4c06a30d185@e6d33"
+      ],
+      "skeletons": [],
+      "textures": [],
+      "materials": [
+        "be298b44-3783-4f1b-a9ef-e4c06a30d185@7a3ca",
+        "be298b44-3783-4f1b-a9ef-e4c06a30d185@55b43"
+      ],
+      "scenes": [
+        "be298b44-3783-4f1b-a9ef-e4c06a30d185@6630c"
+      ]
+    },
+    "fbx": {
+      "preferLocalTimeSpan": false
+    }
+  }
+}

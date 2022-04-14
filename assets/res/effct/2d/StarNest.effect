@@ -1,0 +1,175 @@
+/**
+ * Date / 日期            : 20220219
+ * Ref / 引用             : https://www.shadertoy.com/view/XlfGRj
+ * Template / 模板        : v3::builtin-sprite
+ */
+
+CCEffect %{
+	  techniques: 
+    - 
+      passes: 
+        - 
+          vert: sprite-vs:vert
+          frag: sprite-fs:frag
+          depthStencilState: 
+            depthTest: false
+            depthWrite: false
+          blendState: 
+            targets: 
+              - 
+                blend: true
+                blendSrc: src_alpha
+                blendDst: one_minus_src_alpha
+                blendDstAlpha: one_minus_src_alpha
+          rasterizerState: 
+            cullMode: none
+          properties: 
+            iResolution: 
+              value: 
+                - 960
+                - 640
+            iMouse: 
+              value: 
+                - 0.5
+                - 0.5
+                - 0.5
+                - 0.5
+            alphaThreshold: 
+              value: 0.5
+            formuparam: 
+              value: 0.53
+            stepsize: 
+              value: 0.1
+            zoom: 
+              value: 0.8
+            tile: 
+              value: 0.85
+            speed: 
+              value: 0.01
+            brightness: 
+              value: 0.0015
+            darkmatter: 
+              value: 0.3
+            distfading: 
+              value: 0.73
+            saturation: 
+              value: 0.85
+
+}%
+
+CCProgram sprite-vs %{
+	precision highp float;
+	#include <cc-global>
+	#if USE_LOCAL
+	  #include <cc-local>
+	#endif
+	#if SAMPLE_FROM_RT
+	  #include <common>
+	#endif
+	in vec3 a_position;
+	in vec2 a_texCoord;
+	in vec4 a_color;
+  
+	out vec4 color;
+	out vec2 uv0;
+  
+	vec4 vert () {
+	  vec4 pos = vec4(a_position, 1);
+  
+	  #if USE_LOCAL
+		pos = cc_matWorld * pos;
+	  #endif
+  
+	  #if USE_PIXEL_ALIGNMENT
+		pos = cc_matView * pos;
+		pos.xyz = floor(pos.xyz);
+		pos = cc_matProj * pos;
+	  #else
+		pos = cc_matViewProj * pos;
+	  #endif
+  
+	  uv0 = a_texCoord;
+	  #if SAMPLE_FROM_RT
+		CC_HANDLE_RT_SAMPLE_FLIP(uv0);
+	  #endif
+	  color = a_color;
+  
+	  return pos;
+	}
+}%
+
+CCProgram sprite-fs %{
+	precision highp float;
+	#include <embedded-alpha>
+	#include <alpha-test>
+	#include <cc-global>
+  
+	in vec4 color;
+  
+	#if USE_TEXTURE
+	  in vec2 uv0;
+	  #pragma builtin(local)
+	  layout(set = 2, binding = 10) uniform sampler2D cc_spriteTexture;
+	#endif
+
+	uniform Uniforms {
+	vec4 iMouse;
+	vec2 iResolution;
+	float formuparam;
+	float stepsize;
+	float zoom;
+	float tile;
+	float speed;
+	float brightness;
+	float darkmatter;
+	float distfading;
+	float saturation;
+
+  	};
+	
+	#define iterations 17
+
+#define volsteps 20
+
+vec4 frag() {
+	vec4 ssr_frag_out;
+	vec2 uv=uv0-.5;
+	uv.y*=iResolution.y/iResolution.x;
+	vec3 dir=vec3(uv*zoom,1.);
+	float time=cc_time[0]*speed+.25;
+	float a1=.5+iMouse.x/iResolution.x*2.;
+	float a2=.8+iMouse.y/iResolution.y*2.;
+	mat2 rot1=mat2(cos(a1),sin(a1),-sin(a1),cos(a1));
+	mat2 rot2=mat2(cos(a2),sin(a2),-sin(a2),cos(a2));
+	dir.xz*=rot1;
+	dir.xy*=rot2;
+	vec3 from=vec3(1,.5,0.5);
+	from+=vec3(time*2.,0,-2.);
+	from.xz*=rot1;
+	from.xy*=rot2;
+	float s=0.1,fade=1.;
+	vec3 v=vec3(0.);
+	for (int r=0; r<volsteps; r++) {
+		vec3 p=from+s*dir*.5;
+		p = abs(vec3(tile)-mod(p,vec3(tile*2.))); 
+		float pa,a=pa=0.;
+		for (int i=0; i<iterations; i++) { 
+			p=abs(p)/dot(p,p)-formuparam; 
+			a+=abs(length(p)-pa); 
+			pa=length(p);
+		}
+		float dm=max(0.,darkmatter-a*a*.001); 
+		a*=a*a; 
+		if (r>6) fade*=1.-dm; 
+		v+=fade;
+		v+=vec3(s,s*s,s*s*s*s)*a*brightness*fade; 
+		fade*=distfading; 
+		s+=stepsize;
+	}
+	v=mix(vec3(length(v)),v,saturation); 
+	ssr_frag_out = vec4(v*.01,1.);	
+
+		return ssr_frag_out;
+}
+  }%
+

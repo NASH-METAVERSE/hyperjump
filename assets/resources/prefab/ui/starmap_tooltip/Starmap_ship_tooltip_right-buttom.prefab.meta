@@ -1,0 +1,13 @@
+{
+  "ver": "1.1.35",
+  "importer": "prefab",
+  "imported": true,
+  "uuid": "cafd9acc-7296-435d-90cd-9c3277ba209a",
+  "files": [
+    ".json"
+  ],
+  "subMetas": {},
+  "userData": {
+    "syncNodeName": "Starmap_ship_tooltip_right-buttom"
+  }
+}

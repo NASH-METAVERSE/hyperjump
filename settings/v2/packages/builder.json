@@ -1,0 +1,13 @@
+{
+  "splash-setting": {
+    "displayWatermark": false,
+    "url": "E:\\cocos\\back_up\\hyperjump_master_fitWidth\\assets\\res\\image\\sprite\\backgroud\\Logo.png",
+    "displayRatio": 0.25,
+    "clearColor": {
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 1
+    }
+  }
+}

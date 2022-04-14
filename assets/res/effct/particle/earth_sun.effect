@@ -1,0 +1,668 @@
+/**
+ * Date / 日期            : 20220112
+ * Ref / 引用             : https://www.shadertoy.com/view/XssyDM
+ * Template / 模板        : v3::builtin-unlit
+ */
+
+CCEffect %{
+	  techniques: 
+    - 
+      name: opaque
+      passes: 
+        - 
+          vert: unlit-vs:vert
+          frag: unlit-fs:frag
+          properties: 
+            iResolution: 
+              value: 
+                - 960
+                - 640
+            iMouse: 
+              value: 
+                - 0.5
+                - 0.5
+                - 0.5
+                - 0.5
+            mainTexture: 
+              value: grey
+            tilingOffset: 
+              value: 
+                - 1
+                - 1
+                - 0
+                - 0
+            mainColor: 
+              value: 
+                - 1
+                - 1
+                - 1
+                - 1
+              editor: 
+                type: color
+            colorScale: 
+              value: 
+                - 1
+                - 1
+                - 1
+              target: colorScaleAndCutoff.xyz
+            alphaThreshold: 
+              value: 0.5
+              target: colorScaleAndCutoff.w
+              editor: 
+                parent: USE_ALPHA_TEST
+            color: 
+              target: mainColor
+              editor: 
+                visible: false
+            PI: 
+              value: 3.14159265358
+            iChannel1: 
+              value: white
+            iChannel2: 
+              value: white
+            iChannel3: 
+              value: white
+          migrations: 
+            properties: 
+              mainColor: 
+                formerlySerializedAs: color
+    - 
+      name: transparent
+      passes: 
+        - 
+          vert: unlit-vs:vert
+          frag: unlit-fs:frag
+          depthStencilState: 
+            depthTest: true
+            depthWrite: false
+          blendState: 
+            targets: 
+              - 
+                blend: true
+                blendSrc: src_alpha
+                blendDst: one_minus_src_alpha
+                blendDstAlpha: one_minus_src_alpha
+          properties: 
+            iResolution: 
+              value: 
+                - 960
+                - 640
+            iMouse: 
+              value: 
+                - 0.5
+                - 0.5
+                - 0.5
+                - 0.5
+            mainTexture: 
+              value: grey
+            tilingOffset: 
+              value: 
+                - 1
+                - 1
+                - 0
+                - 0
+            mainColor: 
+              value: 
+                - 1
+                - 1
+                - 1
+                - 1
+              editor: 
+                type: color
+            colorScale: 
+              value: 
+                - 1
+                - 1
+                - 1
+              target: colorScaleAndCutoff.xyz
+            alphaThreshold: 
+              value: 0.5
+              target: colorScaleAndCutoff.w
+              editor: 
+                parent: USE_ALPHA_TEST
+            color: 
+              target: mainColor
+              editor: 
+                visible: false
+          migrations: 
+            properties: 
+              mainColor: 
+                formerlySerializedAs: color
+    - 
+      name: add
+      passes: 
+        - 
+          vert: unlit-vs:vert
+          frag: unlit-fs:frag
+          rasterizerState: 
+            cullMode: none
+          depthStencilState: 
+            depthTest: true
+            depthWrite: false
+          blendState: 
+            targets: 
+              - 
+                blend: true
+                blendSrc: src_alpha
+                blendDst: one
+                blendSrcAlpha: src_alpha
+                blendDstAlpha: one
+          properties: 
+            iResolution: 
+              value: 
+                - 960
+                - 640
+            iMouse: 
+              value: 
+                - 0.5
+                - 0.5
+                - 0.5
+                - 0.5
+            mainTexture: 
+              value: grey
+            tilingOffset: 
+              value: 
+                - 1
+                - 1
+                - 0
+                - 0
+            mainColor: 
+              value: 
+                - 1
+                - 1
+                - 1
+                - 1
+              editor: 
+                type: color
+            colorScale: 
+              value: 
+                - 1
+                - 1
+                - 1
+              target: colorScaleAndCutoff.xyz
+            alphaThreshold: 
+              value: 0.5
+              target: colorScaleAndCutoff.w
+              editor: 
+                parent: USE_ALPHA_TEST
+            color: 
+              target: mainColor
+              editor: 
+                visible: false
+          migrations: 
+            properties: 
+              mainColor: 
+                formerlySerializedAs: color
+    - 
+      name: alpha-blend
+      passes: 
+        - 
+          vert: unlit-vs:vert
+          frag: unlit-fs:frag
+          rasterizerState: 
+            cullMode: none
+          depthStencilState: 
+            depthTest: true
+            depthWrite: false
+          blendState: 
+            targets: 
+              - 
+                blend: true
+                blendSrc: src_alpha
+                blendDst: one_minus_src_alpha
+                blendSrcAlpha: src_alpha
+                blendDstAlpha: one_minus_src_alpha
+          properties: 
+            iResolution: 
+              value: 
+                - 960
+                - 640
+            iMouse: 
+              value: 
+                - 0.5
+                - 0.5
+                - 0.5
+                - 0.5
+            mainTexture: 
+              value: grey
+            tilingOffset: 
+              value: 
+                - 1
+                - 1
+                - 0
+                - 0
+            mainColor: 
+              value: 
+                - 1
+                - 1
+                - 1
+                - 1
+              editor: 
+                type: color
+            colorScale: 
+              value: 
+                - 1
+                - 1
+                - 1
+              target: colorScaleAndCutoff.xyz
+            alphaThreshold: 
+              value: 0.5
+              target: colorScaleAndCutoff.w
+              editor: 
+                parent: USE_ALPHA_TEST
+            color: 
+              target: mainColor
+              editor: 
+                visible: false
+          migrations: 
+            properties: 
+              mainColor: 
+                formerlySerializedAs: color
+
+}%
+
+CCProgram unlit-vs %{
+	precision highp float;
+	#include <input>
+	#include <cc-global>
+	#include <cc-local-batch>
+	#include <input>
+	#include <cc-fog-vs>
+  
+	#if USE_VERTEX_COLOR
+	  in lowp vec4 a_color;
+	  out lowp vec4 v_color;
+	#endif
+  
+	#if USE_TEXTURE
+	  out vec2 uv0;
+	  uniform TexCoords {
+		vec4 tilingOffset;
+	  };
+	#endif
+  
+	vec4 vert () {
+	  vec4 position;
+	  CCVertInput(position);
+  
+	  mat4 matWorld;
+	  CCGetWorldMatrix(matWorld);
+  
+	  #if USE_TEXTURE
+	  	uv0 = a_texCoord * tilingOffset.xy + tilingOffset.zw;
+		#if SAMPLE_FROM_RT
+		  CC_HANDLE_RT_SAMPLE_FLIP(uv0);
+		#endif
+	  #endif
+  
+	  #if USE_VERTEX_COLOR
+		v_color = a_color;
+	  #endif
+  
+	  CC_TRANSFER_FOG(matWorld * position);
+	  return cc_matProj * (cc_matView * matWorld) * position;
+	}
+}%
+
+CCProgram unlit-fs %{
+	precision highp float;
+	#include <output>
+	#include <cc-fog-fs>
+	#include <cc-global>
+  
+	#if USE_ALPHA_TEST
+	  #pragma define ALPHA_TEST_CHANNEL options([a, r, g, b])
+	#endif
+  
+	#if USE_TEXTURE
+	  in vec2 uv0;
+	  uniform sampler2D mainTexture;
+	#endif
+  
+	uniform Constant {
+	  vec4 mainColor;
+	  vec4 colorScaleAndCutoff;
+	  	vec4 iMouse;
+	vec2 iResolution;
+	float PI;
+
+	};
+  
+	#if USE_VERTEX_COLOR
+	  in lowp vec4 v_color;
+	#endif
+
+		uniform sampler2D iChannel1;
+	uniform sampler2D iChannel2;
+	uniform sampler2D iChannel3;
+
+	mat3 rotx(float a) { mat3 rot; rot[0] = vec3(1.0, 0.0, 0.0); rot[1] = vec3(0.0, cos(a), -sin(a)); rot[2] = vec3(0.0, sin(a), cos(a)); return rot; }
+mat3 roty(float a) { mat3 rot; rot[0] = vec3(cos(a), 0.0, sin(a)); rot[1] = vec3(0.0, 1.0, 0.0); rot[2] = vec3(-sin(a), 0.0, cos(a)); return rot; }
+mat3 rotz(float a) { mat3 rot; rot[0] = vec3(cos(a), -sin(a), 0.0); rot[1] = vec3(sin(a), cos(a), 0.0); rot[2] = vec3(0.0, 0.0, 1.0); return rot; }
+vec3 lightDir = normalize(vec3(0.0, 1.0, -1.0));
+const float SHELL = 0.25;
+const float OUTER_SHELL = SHELL + 0.1;
+const float H = (OUTER_SHELL - SHELL)*.7;
+const float WATERLEVEL = SHELL+H*0.2;
+
+#define PI2 (PI*0.5)
+
+
+vec2 polar2Rect(in vec2 uv)
+{
+    vec2 _uv = uv;
+    uv.x = cos(_uv.x)*_uv.y;
+    uv.y = sin(_uv.x)*_uv.y;
+    return uv;
+}
+vec4 textureSpherical(in sampler2D tex, in vec3 rp, float scale)
+{
+    float lrp = length(rp);
+    vec2 uv1 = vec2(atan(rp.y, rp.x), acos(rp.z/lrp));
+    vec2 uv2 = uv1; uv2.y = PI-uv1.y;
+    float f=uv1.y;
+    uv1=polar2Rect(uv1)*scale;
+    uv2=polar2Rect(uv2)*scale;
+    vec4 c1 = texture(tex, uv1);
+    vec4 c2 = texture(tex, uv2);
+    return mix(c1, c2, smoothstep(PI2-0.01, PI2+0.01, f));
+}
+mat3 g_planetRot;
+vec3 planetRotatedVec(in vec3 p)
+{
+    return p*g_planetRot;
+}
+float map(in vec3 rp)
+{
+    float h = textureSpherical(mainTexture, planetRotatedVec(rp), .6).r;
+    h = smoothstep(0.1, 1.0, h);
+    h*=H*.5;
+    return  length(rp) - (SHELL+h);
+}
+vec3 grad(in vec3 rp)
+{
+    vec2 off = vec2(0.0005, 0.0);
+    vec3 g = vec3(map(rp + off.xyy) - map(rp - off.xyy),
+                  map(rp + off.yxy) - map(rp - off.yxy),
+                  map(rp + off.yyx) - map(rp - off.yyx));
+    return normalize(g);
+}
+vec3 traceSphere(in vec3 ro, in vec3 rd, float r, out float t1, out float t2)
+{
+    t1=t2=-1.0;
+    vec3 X = ro + rd * (dot(normalize(-ro), rd)) * length(ro);
+    float disc = r*r-pow(length(X), 2.0);
+    if (disc < 0.0) return vec3(1000000.0);
+    disc=sqrt(disc);
+    vec3 p=X-disc*rd;
+    t1=length(p-ro);t2=t1+disc*2.;
+    return p;
+}
+float getClouds(in vec3 hitp, float T)
+{
+    hitp *= rotx(-T);
+    vec3 hitp3 = hitp*rotz(T*.7);
+    vec3 hitp2 = hitp*roty(T);
+    if(dot(hitp, hitp) > 10000.) return 0.;
+    float S = 1.;
+    float c = textureSpherical(mainTexture, hitp, .2*S).r*.75;
+    c += textureSpherical(mainTexture, hitp3, .7*S).r*.5*.5;
+    c += textureSpherical(mainTexture, hitp2, 1.4*S).r*.5*.5*.5;
+    c += textureSpherical(mainTexture, hitp, 2.4*S).r*.5*.5*.5*.5;
+    c += textureSpherical(mainTexture, hitp3, 4.4*S).r*.5*.5*.5*.5*.5;
+    return smoothstep(.55, .95, c);
+}
+float traceClouds(in vec3 ro, in vec3 rd, float depth)
+{
+    float T = cc_time[0]*.02;
+    float t1=0.; float t2=0.;
+    if(t1<0.0) return 0.0;
+    vec3 hitp = traceSphere(ro, rd, OUTER_SHELL,t1,t2);
+    vec3 hitp2 = ro+rd*t2;
+    float c = getClouds(hitp, T);
+    if (depth > length(hitp2-ro))
+    {
+        float c2=getClouds(ro+rd*t2,T);
+        c=mix(c, c2, c2);
+    }
+    return c;
+}
+vec2 g_uv;
+vec3 g_viewDir;
+#define CLOUDS 0
+#define GROUND 1
+#define WATER 2
+vec4 waterTexture(in vec3 rp)
+{
+    rp=planetRotatedVec(rp);
+    float T = cc_time[0]*.01;
+    float S=2.0;
+    rp *= rotx(T);
+    float c1=textureSpherical(iChannel1, rp, S).x;
+    rp *= rotx(1.+T);
+    float c2=textureSpherical(iChannel1, rp, S).x;
+    rp *= rotx(2.+T);
+    float c3=textureSpherical(iChannel1, rp, S).x;
+    float B = cc_time[0]*2.;
+    float col = mix(c3, mix(c1, c2, 0.5+0.5*(sin(PI*0.5+B)*0.5+0.5)), 0.5+0.5*(sin(B)*0.5+0.5));
+    return vec4(col);
+}
+vec3 gradWater(in vec3 rp)
+{
+    vec3 w=normalize(rp);
+    vec3 u=normalize(cross(vec3(0.0, 1.0, 0.0), w));
+    vec3 v=(cross( u,w));
+    float s=.0009;
+    float h1 = waterTexture(rp).x;
+    float h2 = waterTexture(rp+u*s).x;
+    float h3 = waterTexture(rp+v*s).x;
+    float bumpiness=.2;
+    vec3 v1 = normalize(vec3(bumpiness, h1-h2, 0.0));
+    vec3 v2 = normalize(vec3(0.0, bumpiness , h1-h3 ));
+    vec3 g = normalize(cross(v1,v2));
+    mat3 m; m[0]=v;m[1] = u;m[2]=w;
+    return m*g;
+}
+vec4 texSpace(in sampler2D tex, in vec3 dir)
+{
+    vec2 uv = vec2(atan(dir.x, dir.z), dir.y);
+    uv.x=abs(uv.x);
+	uv*=.4;
+    vec4 col = texture(tex, uv);
+    uv+=col.rg*.05;
+    col = texture(tex, uv);
+    uv+=col.rg*.1;
+    col = texture(tex, uv);
+    col*=smoothstep(0.1, 1.0, col.r);
+    vec4 col1=vec4(0.2, 0.2, .7, 0.0);
+    vec4 col2=vec4(0.2, 0.9, 0.5, 0.0);
+    vec4 cl=col*vec4(0.0, 0.5, 1.0, 0.0);
+    cl=mix(cl, col1, smoothstep(0.0, 0.4, col.r));
+    cl=mix(cl, col2, smoothstep(0.1, 0.6, col.r));
+    col=cl;
+    col*=smoothstep(0.4, 0., abs(dir.y));
+    col*=smoothstep(1., .5, abs(uv.x));
+    col*= clamp((.6-abs(dir.y))-0.1*sin(2.0*atan(dir.x, dir.z)), 0.0, 1.0);
+    return col;
+}
+vec4 bgCol(in vec3 rd)
+{
+    vec4 col=texSpace(mainTexture, rd);
+    col+=smoothstep(0.93, 1.0, textureSpherical(iChannel2, rd, 1.0).g)*texture(iChannel1, vec2(.01*cc_time[0]+atan(rd.z, rd.x), rd.y)).r;
+    return col*.2;
+}
+float doShadows(in vec3 rp)
+{
+    float s = 1.0;
+    rp+=lightDir*.01;
+    for (int i = 0; i < 4; ++i)
+    {
+    	float dist=map(rp);
+        rp+=max(dist, 0.001)*lightDir;
+        s=min(s,dist);
+    }
+    return mix(1.0, clamp(s/0.01, 0.0, 1.0), 0.8);
+}
+void trace(in vec3 rp, in vec3 rd, inout vec4 color)
+{
+    vec4 top =   vec4(.3, .1, .2, .0)*.1;
+    vec4 bottom= vec4(.1, .0, .2, .0)*.1;
+    color = mix(top, bottom, clamp(rd.y+0.5, 0.0, 1.0));
+    color+=bgCol(rd);
+    bool hit = false;
+    vec3 ro = rp;
+    int hitId = CLOUDS;
+    float t1Clouds=0.0;float t2Clouds=0.0;
+    vec3 hitp = traceSphere(ro, rd, OUTER_SHELL,t1Clouds,t2Clouds);
+    float dist = 99.;
+    for (int i = 0; i < 20; ++i)
+    {
+        dist = map(rp);
+        rp += max(0.008, dist) * rd;
+        if (dist < 0.0)
+        {
+            hitId = GROUND;
+            break;
+        }
+        if (length(ro - rp) > 5.0) break;
+    }
+    if (hitId==GROUND)
+    {
+        for (int i = 0; i < 8; ++i)
+        {
+            rp += rd*dist*.4;
+            dist = map(rp);
+        }
+    }
+    float depth = length(ro-rp);
+    float t1=0.0;float t2=0.0;
+	vec3 waterLevelRp = traceSphere(ro, rd, WATERLEVEL+0.00*(sin(cc_time[0]*.25)*.5+.5),t1,t2);
+    float wdepth = length(ro-waterLevelRp);
+    if (wdepth < depth)
+    {
+        hitId=WATER;
+    }
+    float waterLevel = map(waterLevelRp);
+    vec3 gGround = grad(rp);
+    vec3 gWaterSurface = normalize(waterLevelRp);
+    float dGround = clamp(dot(gGround, lightDir), 0.05, 1.0);
+    float dWater = clamp(dot(gWaterSurface, lightDir), 0.05, 1.0);
+    float dGlobal = clamp(dot(normalize(rp), lightDir), 0.05, 1.0);
+    vec3 wg = gradWater(waterLevelRp);
+    dGlobal=(0.9+dGlobal)/(1.9);
+    vec3 H = normalize(-rd+lightDir);
+    float dSpec = clamp(dot(H, wg), 0.0, 1.0);
+    dSpec = pow(dSpec, 56.0)*.7;
+    dSpec*=smoothstep(0.1, 0.2, dGlobal);
+    dGround*=dGlobal;
+    dWater*=dGlobal;
+    if (hitId==GROUND)
+    {
+        vec4 cl = vec4(1.);
+        color=mix(cl, vec4(0.3, 0.5, 0.0, 0.5)*textureSpherical(iChannel2, rp, 16.0), 1.-smoothstep(0., 0.02, length(rp-waterLevelRp)));
+        color*=dGround;
+    }    
+    if (hitId==WATER)
+    {
+        float s = smoothstep(.007, .0, waterLevel);
+        vec4 c1 = vec4(0., 0.13,  0.3, 0.0);
+        vec4 c2 = vec4(0., 0.4, 0.6, 0.0);
+        vec4 cl = mix(c1, c2, s);
+		const int stps = 4;	
+        const float STP=2.;
+        const float phase=STP/float(stps);
+        float foam = 0.0;
+        const float b=STP/4.;
+        for (int i = 0; i < stps; ++i)
+        {
+            float T=cc_time[0]*.2+float(i)*phase;
+            vec3 _rp = waterLevelRp*3.;
+			float p = mod(T, STP); 
+            _rp-=p*gGround*.05;
+            float f = textureSpherical(iChannel3, _rp, 3.0).r;
+			f*=smoothstep(0.0, b, p);
+            f*=smoothstep(STP, STP-b, p);
+            foam = max(foam, f);
+        }
+       	foam = smoothstep(0.6, .9, foam);
+        foam*=s;
+        foam/=.4;
+        float dFinal = mix(dWater, dGround, dGround);
+        cl += foam;
+        color = cl * dFinal;
+	    color += vec4(dSpec);
+    }
+    if (hitId==0 )
+    {
+        float sund=clamp(dot(rd, lightDir), 0.0, 1.0);
+        float sunocc=clamp(dot(g_viewDir, lightDir), 0.0, 1.0);
+        sunocc=smoothstep(1.002, 0.99, sunocc);
+        float sun=(pow(sund, 40.))*sunocc;
+        sun=max(sun, smoothstep(0.99, 0.995, sund));
+        vec4 suncol=vec4(sun);
+        vec4 mie=vec4(1.0, 0.2, 0., 1.0)*(t2Clouds-t1Clouds)*pow(sund, 15.)*3.;
+        float rlscatter=clamp(dot(lightDir, reflect(rd,normalize(hitp))),0.2, 1.);
+        vec4 rayleigh=rlscatter*(t2Clouds-t1Clouds)*vec4(.4, .6, 1., 1.0);
+        vec4 atmos=mix(mie,rayleigh,1.-mie.a);
+        color+=atmos;                 
+        color+=suncol;                
+    }
+    if(hitId!=0)
+    {
+	    color*=doShadows(hitId==GROUND?rp:waterLevelRp);
+    }
+    if(t1Clouds>=.0)
+    {
+#if SHADOWS
+        vec3 nrp = normalize(rp);
+        float shad=traceClouds(nrp*10., -nrp, wdepth);
+        if (hitId != CLOUDS)
+        {
+            color = mix(color, vec4(0.), shad*.7);
+        }
+#endif
+#if DO_CLOUDS
+        float clouds = traceClouds(ro, rd, wdepth);
+        clouds*= mix(1.0, smoothstep(0.1, 0.4, abs(dot(rd, normalize(hitp)))), 0.9);
+        float darkness=smoothstep(-0.4, 0.5,dot(normalize(hitp), lightDir));
+        color = mix(color, vec4(clouds*darkness), clouds);
+#endif
+    }
+}
+mat3 lookat(vec3 from, vec3 to)
+{
+    vec3 f = normalize(to - from);
+    vec3 _tmpr = normalize(cross(f, vec3(0.0, 1.0, 0.0)));
+    vec3 u = normalize(cross(_tmpr, f));
+    vec3 r = normalize(cross(u, f));
+    return mat3(r, u, f);
+}
+vec4 frag() {
+	vec4 ssr_frag_out;
+    ssr_frag_out = vec4(0.0);
+	vec2 uv = ((uv0)-vec2(.5))*vec2(1.0, iResolution.y/iResolution.x);
+    g_uv = uv;
+    g_planetRot=roty(cc_time[0]*.008)*rotz(cc_time[0]*.02);
+    vec2 im = 16.0 * ((iMouse.xy / iResolution.xy) - vec2(0.5));
+    vec3 rp = vec3(0.0, 0.0, -.8);
+    if(iMouse.z<=0.0) 
+    {	
+        float T=PI*(4.0/3.0)-cc_time[0]*.1+6.;
+        im.x=(0.5+0.5*cos(T))*3.;
+    	im.y=sin(T)*8.;
+    }
+    rp = roty(-im.x) * rp;
+    rp.y = -im.y*.25;
+    vec3 rd = normalize(vec3(uv, 1.0));
+    rd = lookat(rp, vec3(0.0)) * rd;
+    g_viewDir=lookat(rp, vec3(.0))*vec3(0.0, 0.0, 1.0);
+    trace(rp, rd, ssr_frag_out);
+    ssr_frag_out.rgb = pow(ssr_frag_out.rgb, vec3(1.0 / 2.2));
+
+		#if USE_ALPHA_TEST
+		if (ssr_frag_out.ALPHA_TEST_CHANNEL < colorScaleAndCutoff.w) discard;
+		#endif
+		return ssr_frag_out;
+}
+}%
+

@@ -1,0 +1,11 @@
+{
+  "config": {
+    "mobileFull": true,
+    "pcFull": false,
+    "mobile": true,
+    "pc": false,
+    "mode": "4",
+    "width": 1400,
+    "height": 2800
+  }
+}

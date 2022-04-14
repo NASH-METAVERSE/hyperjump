@@ -1,0 +1,82 @@
+{
+  "ver": "2.1.10",
+  "importer": "fbx",
+  "imported": true,
+  "uuid": "d198b67f-df31-4751-888f-a5e2df448505",
+  "files": [],
+  "subMetas": {
+    "b0da2": {
+      "importer": "gltf-mesh",
+      "uuid": "d198b67f-df31-4751-888f-a5e2df448505@b0da2",
+      "displayName": "",
+      "id": "b0da2",
+      "name": "物件_1.mesh",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.1.0",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "fa980": {
+      "importer": "gltf-material",
+      "uuid": "d198b67f-df31-4751-888f-a5e2df448505@fa980",
+      "displayName": "",
+      "id": "fa980",
+      "name": "材质_2.material",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "1cd35": {
+      "importer": "gltf-scene",
+      "uuid": "d198b67f-df31-4751-888f-a5e2df448505@1cd35",
+      "displayName": "",
+      "id": "1cd35",
+      "name": "Form10fbx.prefab",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.12",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "imageMetas": [],
+    "legacyFbxImporter": false,
+    "redirect": "d198b67f-df31-4751-888f-a5e2df448505@1cd35",
+    "assetFinder": {
+      "meshes": [
+        "d198b67f-df31-4751-888f-a5e2df448505@b0da2"
+      ],
+      "skeletons": [],
+      "textures": [],
+      "materials": [
+        "d198b67f-df31-4751-888f-a5e2df448505@fa980"
+      ],
+      "scenes": [
+        "d198b67f-df31-4751-888f-a5e2df448505@1cd35"
+      ]
+    },
+    "dumpMaterials": false,
+    "depthWriteInAlphaModeBlend": false,
+    "promoteSingleRootNode": false,
+    "fbx": {
+      "preferLocalTimeSpan": false
+    }
+  }
+}

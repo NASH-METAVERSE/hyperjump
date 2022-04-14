@@ -1,0 +1,61 @@
+{
+  "ver": "2.1.10",
+  "importer": "fbx",
+  "imported": true,
+  "uuid": "8377b2c9-8603-4074-ad9c-3f338bba06fe",
+  "files": [],
+  "subMetas": {
+    "e91e8": {
+      "importer": "gltf-mesh",
+      "uuid": "8377b2c9-8603-4074-ad9c-3f338bba06fe@e91e8",
+      "displayName": "",
+      "id": "e91e8",
+      "name": "small_dail_plane.mesh",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.1.0",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "bbc5c": {
+      "importer": "gltf-scene",
+      "uuid": "8377b2c9-8603-4074-ad9c-3f338bba06fe@bbc5c",
+      "displayName": "",
+      "id": "bbc5c",
+      "name": "Small_dail.prefab",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.12",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "imageMetas": [],
+    "legacyFbxImporter": false,
+    "redirect": "8377b2c9-8603-4074-ad9c-3f338bba06fe@bbc5c",
+    "assetFinder": {
+      "meshes": [
+        "8377b2c9-8603-4074-ad9c-3f338bba06fe@e91e8"
+      ],
+      "skeletons": [],
+      "textures": [],
+      "materials": [],
+      "scenes": [
+        "8377b2c9-8603-4074-ad9c-3f338bba06fe@bbc5c"
+      ]
+    },
+    "fbx": {
+      "preferLocalTimeSpan": false
+    }
+  }
+}

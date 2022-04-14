@@ -1,0 +1,310 @@
+CCEffect %{
+  techniques:
+  - name: opaque
+    passes:
+    - vert: oreo-vs:vert # builtin header
+      frag: oreo-fs:frag
+      properties: &props
+        ImageSourceSampler: {value: white,editor: {displayName: ImageSourceSampler,tooltip: ImageSource纹理贴图图片源}}
+        u_Color: {value: [0.85, 0.92, 0.10],target: u_Color_R.rgb,editor: {displayName: Color,type: color,visible: true}}
+        u_edge: {value: 1.0,editor: {displayName: edge,visible: true,range: [0,2,0.1],slide: true}}
+        SpriteFrameWeight: {value: 1.0,editor: {displayName: SpriteFrameWeight,visible: true,tooltip: ImageSourceSampler纹理权重,range: [0,1,0.01],slide: true}}
+  - name: transparent
+    passes:
+    - vert: oreo-vs:vert # builtin header
+      frag: oreo-fs:frag
+      blendState:
+        targets:
+        - blend: true
+          blendSrc: src_alpha
+          blendDst: one_minus_src_alpha
+          blendSrcAlpha: src_alpha
+          blendDstAlpha: one_minus_src_alpha
+      properties: *props
+}%
+
+CCProgram oreo-vs %{
+    precision highp float;
+    //Attributes
+    in vec3 a_position;
+    //
+    in vec2 a_texCoord;
+    //
+    #define OREO_SHADER_EFFECT 1
+    #define VMAINUV 1
+    #define UVTRANSFORM0 0
+    //Uniforms
+    uniform OreoCustom {
+        vec4 u_Color_R;
+        mat4 textureTransform;
+        float SpriteFrameWeight;
+        float u_edge;
+    };
+    //USE_2D_EFFECT
+    #if (USE_2D_SPRITE_FRAME)
+    #pragma builtin(local)
+    layout(set = 2, binding = 10) uniform sampler2D cc_spriteTexture;
+    #endif
+    //Samplers
+    uniform sampler2D ImageSourceSampler;
+    //Varyings
+    out vec2 transformedUV;
+    //
+    out vec2 vMainuv;
+    //
+    out vec2 v_uv;
+    //
+    //World
+    #if (USE_2D_EFFECT)
+    const mat4 cc_matWorld = mat4(1.0);
+    #else
+    #include "cc-local"
+    #endif
+    //ViewProjection
+    #include "cc-global"
+    //Constants
+    float u_EmptyName = 100.0;
+    //Entry point
+    vec4 vert(void) {
+        //Uniforms Remap Begin
+        vec3 u_Color = u_Color_R.rgb;
+        //Uniforms Remap End
+        //WorldPos
+        vec4 output1 = cc_matWorld * vec4(a_position, 1.0);
+        //WorldPos * ViewProjectionTransform
+        vec4 output0 = cc_matViewProj * output1;
+        //VertexOutput
+        vec4 target_VertPosition = output0;
+        //SpriteFrame
+        transformedUV = vec2(textureTransform * vec4(a_texCoord.xy, 1.0, 0.0));
+        v_uv = a_texCoord;
+        return target_VertPosition;
+    }
+}%
+
+CCProgram oreo-fs %{
+    precision highp float;
+    #define OREO_SHADER_EFFECT 1
+    #define VMAINUV 1
+    #define UVTRANSFORM0 0
+    //Uniforms
+    uniform OreoCustom {
+        vec4 u_Color_R;
+        mat4 textureTransform;
+        float SpriteFrameWeight;
+        float u_edge;
+    };
+    //USE_2D_EFFECT
+    #if (USE_2D_SPRITE_FRAME)
+    #pragma builtin(local)
+    layout(set = 2, binding = 10) uniform sampler2D cc_spriteTexture;
+    #endif
+    //Samplers
+    uniform sampler2D ImageSourceSampler;
+    //Varyings
+    in vec2 transformedUV;
+    //
+    in vec2 vMainuv;
+    //
+    in vec2 v_uv;
+    //
+    //World
+    #if (USE_2D_EFFECT)
+    const mat4 cc_matWorld = mat4(1.0);
+    #else
+    #include "cc-local"
+    #endif
+    //ViewProjection
+    #include "cc-global"
+    //SpriteFrame
+    const float PI = 3.1415926535897932384626433832795;
+    const float HALF_MIN = 5.96046448e-08;
+    const float LinearEncodePowerApprox = 2.2;
+    const float GammaEncodePowerApprox = 1.0 / LinearEncodePowerApprox;
+    const vec3 LuminanceEncodeApprox = vec3(0.2126, 0.7152, 0.0722);
+    const float Epsilon = 0.0000001;
+    #define saturate(x) clamp(x, 0.0, 1.0)
+    #define absEps(x) abs(x) + Epsilon
+    #define maxEps(x) max(x, Epsilon)
+    #define saturateEps(x) clamp(x, Epsilon, 1.0)
+    #define texture2D texture
+    #define round(x) floor(x + 0.5)
+    mat3 transposeMat3(mat3 inMatrix) {
+        vec3 i0 = inMatrix[0];
+        vec3 i1 = inMatrix[1];
+        vec3 i2 = inMatrix[2];
+        mat3 outMatrix = mat3(
+            vec3(i0.x, i1.x, i2.x),
+            vec3(i0.y, i1.y, i2.y),
+            vec3(i0.z, i1.z, i2.z)
+        );
+        return outMatrix;
+    }
+    mat3 inverseMat3(mat3 inMatrix) {
+        float a00 = inMatrix[0][0], a01 = inMatrix[0][1], a02 = inMatrix[0][2];
+        float a10 = inMatrix[1][0], a11 = inMatrix[1][1], a12 = inMatrix[1][2];
+        float a20 = inMatrix[2][0], a21 = inMatrix[2][1], a22 = inMatrix[2][2];
+        float b01 = a22 * a11 - a12 * a21;
+        float b11 = -a22 * a10 + a12 * a20;
+        float b21 = a21 * a10 - a11 * a20;
+        float det = a00 * b01 + a01 * b11 + a02 * b21;
+        return mat3(b01, (-a22 * a01 + a02 * a21), (a12 * a01 - a02 * a11),
+            b11, (a22 * a00 - a02 * a20), (-a12 * a00 + a02 * a10),
+            b21, (-a21 * a00 + a01 * a20), (a11 * a00 - a01 * a10)) / det;
+    }
+    float toLinearSpace(float a_color) {
+        return pow(a_color, LinearEncodePowerApprox);
+    }
+    vec3 toLinearSpace(vec3 a_color) {
+        return pow(a_color, vec3(LinearEncodePowerApprox));
+    }
+    vec4 toLinearSpace(vec4 a_color) {
+        return vec4(pow(a_color.rgb, vec3(LinearEncodePowerApprox)), a_color.a);
+    }
+    vec3 toGammaSpace(vec3 a_color) {
+        return pow(a_color, vec3(GammaEncodePowerApprox));
+    }
+    vec4 toGammaSpace(vec4 a_color) {
+        return vec4(pow(a_color.rgb, vec3(GammaEncodePowerApprox)), a_color.a);
+    }
+    float toGammaSpace(float a_color) {
+        return pow(a_color, GammaEncodePowerApprox);
+    }
+    float square(float value) {
+        return value * value;
+    }
+    float pow5(float value) {
+        float sq = value * value;
+        return sq * sq * value;
+    }
+    float getLuminance(vec3 a_color) {
+        return clamp(dot(a_color, LuminanceEncodeApprox), 0., 1.);
+    }
+    float getRand(vec2 seed) {
+        return fract(sin(dot(seed.xy, vec2(12.9898, 78.233))) * 43758.5453);
+    }
+    float dither(vec2 seed, float varianceAmount) {
+        float rand = getRand(seed);
+        float dither = mix(-varianceAmount / 255.0, varianceAmount / 255.0, rand);
+        return dither;
+    }
+    const float rgbdMaxRange = 255.0;
+    vec4 toRGBD(vec3 a_color) {
+        float maxRGB = maxEps(max(a_color.r, max(a_color.g, a_color.b)));
+        float D = max(rgbdMaxRange / maxRGB, 1.);
+        D = clamp(floor(D) / 255.0, 0., 1.);
+        vec3 rgb = a_color.rgb * D;
+        rgb = toGammaSpace(rgb);
+        return vec4(clamp(rgb, 0., 1.), D);
+    }
+    vec3 fromRGBD(vec4 rgbd) {
+        rgbd.rgb = toLinearSpace(rgbd.rgb);
+        return rgbd.rgb / rgbd.a;
+    }
+    vec3 parallaxCorrectNormal(vec3 vertexPos, vec3 origVec, vec3 cubeSize, vec3 cubePos) {
+        vec3 invOrigVec = vec3(1.0, 1.0, 1.0) / origVec;
+        vec3 halfSize = cubeSize * 0.5;
+        vec3 intersecAtMaxPlane = (cubePos + halfSize - vertexPos) * invOrigVec;
+        vec3 intersecAtMinPlane = (cubePos - halfSize - vertexPos) * invOrigVec;
+        vec3 largestIntersec = max(intersecAtMaxPlane, intersecAtMinPlane);
+        float distance = min(min(largestIntersec.x, largestIntersec.y), largestIntersec.z);
+        vec3 intersectPositionWS = vertexPos + origVec * distance;
+        return intersectPositionWS - cubePos;
+    }
+    //
+    //Constants
+    float u_EmptyName = 100.0;
+    //Entry point
+    vec4 frag(void) {
+        //Uniforms Remap Begin
+        vec3 u_Color = u_Color_R.rgb;
+        //Uniforms Remap End
+        //SpriteFrame
+        #if (USE_2D_SPRITE_FRAME)
+        vec4 tempTextureRead = texture(cc_spriteTexture, transformedUV);
+        #else
+        vec4 tempTextureRead = texture(ImageSourceSampler, transformedUV);
+        #endif
+        vec4 rgba = tempTextureRead.rgba * SpriteFrameWeight;
+        float a = tempTextureRead.a * SpriteFrameWeight;
+        //Scale
+        vec4 output3 = rgba * a;
+        //VectorSplitter
+        float x = v_uv.x;
+        float y = v_uv.y;
+        //Divide
+        float output9 = u_edge / u_EmptyName;
+        //Minus
+        float output8 = x - output9;
+        //Minus
+        float output10 = y - output9;
+        //Add
+        float output11 = x + output9;
+        //Minus
+        float output12 = y - output9;
+        //VectorMerger
+        vec2 xy = vec2(output8, output10);
+        vec2 zw = vec2(output11, output12);
+        //Texture
+        #if (USE_2D_SPRITE_FRAME)
+        vec4 tempTextureRead1 = texture(cc_spriteTexture, xy);
+        #else
+        vec4 tempTextureRead1 = texture(ImageSourceSampler, xy);
+        #endif
+        vec4 rgba2 = tempTextureRead1.rgba;
+        //Texture
+        #if (USE_2D_SPRITE_FRAME)
+        vec4 tempTextureRead2 = texture(cc_spriteTexture, zw);
+        #else
+        vec4 tempTextureRead2 = texture(ImageSourceSampler, zw);
+        #endif
+        vec4 rgba3 = tempTextureRead2.rgba;
+        //Add
+        vec4 output7 = rgba2 + rgba3;
+        //Add
+        float output14 = x + output9;
+        //Add
+        float output15 = y + output9;
+        //Minus
+        float output16 = x - output9;
+        //Add
+        float output17 = y + output9;
+        //VectorMerger
+        vec2 xy2 = vec2(output14, output15);
+        vec2 zw2 = vec2(output16, output17);
+        //Texture
+        #if (USE_2D_SPRITE_FRAME)
+        vec4 tempTextureRead3 = texture(cc_spriteTexture, xy2);
+        #else
+        vec4 tempTextureRead3 = texture(ImageSourceSampler, xy2);
+        #endif
+        vec4 rgba4 = tempTextureRead3.rgba;
+        //Texture
+        #if (USE_2D_SPRITE_FRAME)
+        vec4 tempTextureRead4 = texture(cc_spriteTexture, zw2);
+        #else
+        vec4 tempTextureRead4 = texture(ImageSourceSampler, zw2);
+        #endif
+        vec4 rgba5 = tempTextureRead4.rgba;
+        //Add
+        vec4 output13 = rgba4 + rgba5;
+        //Add
+        vec4 output6 = output7 + output13;
+        //ColorSplitter
+        float a1 = output6.a;
+        //Scale
+        vec3 output5 = u_Color * a1;
+        //ColorMerger
+        vec4 rgba1 = vec4(output5, a1);
+        //One minus
+        float output18 = 1. - a;
+        //Scale
+        vec4 output4 = rgba1 * output18;
+        //Add
+        vec4 output2 = output3 + output4;
+        //FragmentOutput
+        vec4 target_FragColor = output2;
+
+        return target_FragColor ;
+    }
+}%

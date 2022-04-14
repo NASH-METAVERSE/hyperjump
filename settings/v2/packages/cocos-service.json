@@ -1,0 +1,42 @@
+{
+  "game": {
+    "app_id": "666354683",
+    "name": "hyperjump_master",
+    "c_id": "0"
+  },
+  "appConfigMaps": [
+    {
+      "app_id": "UNKNOW",
+      "config_id": "c276a4"
+    },
+    {
+      "app_id": "666354683",
+      "config_id": "abaf44"
+    }
+  ],
+  "configs": [
+    {
+      "app_id": "UNKNOW",
+      "config_id": "c276a4",
+      "config_name": "Default",
+      "config_remarks": "",
+      "services": []
+    },
+    {
+      "app_id": "666354683",
+      "config_id": "abaf44",
+      "config_name": "Default",
+      "config_remarks": "",
+      "services": [
+        {
+          "service_id": "235",
+          "enable": false,
+          "param": {
+            "app_id": "666354683",
+            "store_id": "H5"
+          }
+        }
+      ]
+    }
+  ]
+}

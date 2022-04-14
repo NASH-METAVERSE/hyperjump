@@ -1,0 +1,120 @@
+{
+  "ver": "1.0.6",
+  "importer": "sprite-atlas",
+  "imported": true,
+  "uuid": "ea25c640-900d-43e6-97bb-a48e01739c35",
+  "files": [
+    ".plist",
+    ".json"
+  ],
+  "subMetas": {
+    "cc220": {
+      "importer": "sprite-frame",
+      "uuid": "ea25c640-900d-43e6-97bb-a48e01739c35@cc220",
+      "displayName": "",
+      "id": "cc220",
+      "name": "ship_card_click",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 1,
+        "trimY": 94,
+        "width": 348,
+        "height": 92,
+        "rawWidth": 348,
+        "rawHeight": 92,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "a99ca70a-e76d-4c3c-a207-6bd276fa28c4@6c48a",
+        "atlasUuid": "ea25c640-900d-43e6-97bb-a48e01739c35"
+      },
+      "ver": "1.0.9",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "6a32c": {
+      "importer": "sprite-frame",
+      "uuid": "ea25c640-900d-43e6-97bb-a48e01739c35@6a32c",
+      "displayName": "",
+      "id": "6a32c",
+      "name": "ship_card_default",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 1,
+        "trimY": 1,
+        "width": 347,
+        "height": 91,
+        "rawWidth": 347,
+        "rawHeight": 91,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "a99ca70a-e76d-4c3c-a207-6bd276fa28c4@6c48a",
+        "atlasUuid": "ea25c640-900d-43e6-97bb-a48e01739c35"
+      },
+      "ver": "1.0.9",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "4fb53": {
+      "importer": "sprite-frame",
+      "uuid": "ea25c640-900d-43e6-97bb-a48e01739c35@4fb53",
+      "displayName": "",
+      "id": "4fb53",
+      "name": "ship_card_hover",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 1,
+        "trimY": 188,
+        "width": 348,
+        "height": 92,
+        "rawWidth": 348,
+        "rawHeight": 92,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "a99ca70a-e76d-4c3c-a207-6bd276fa28c4@6c48a",
+        "atlasUuid": "ea25c640-900d-43e6-97bb-a48e01739c35"
+      },
+      "ver": "1.0.9",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "atlasTextureName": "ship_card.png",
+    "format": 3,
+    "uuid": "ea25c640-900d-43e6-97bb-a48e01739c35",
+    "textureUuid": "a99ca70a-e76d-4c3c-a207-6bd276fa28c4@6c48a"
+  }
+}

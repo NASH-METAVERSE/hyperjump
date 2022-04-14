@@ -1,0 +1,61 @@
+{
+  "ver": "2.1.10",
+  "importer": "fbx",
+  "imported": true,
+  "uuid": "04a7cbf2-38e1-45f0-a5b5-e026cbf07aaa",
+  "files": [],
+  "subMetas": {
+    "58041": {
+      "importer": "gltf-mesh",
+      "uuid": "04a7cbf2-38e1-45f0-a5b5-e026cbf07aaa@58041",
+      "displayName": "",
+      "id": "58041",
+      "name": "环体.mesh",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.1.0",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "8c110": {
+      "importer": "gltf-scene",
+      "uuid": "04a7cbf2-38e1-45f0-a5b5-e026cbf07aaa@8c110",
+      "displayName": "",
+      "id": "8c110",
+      "name": "circle.prefab",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.12",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "imageMetas": [],
+    "legacyFbxImporter": false,
+    "redirect": "04a7cbf2-38e1-45f0-a5b5-e026cbf07aaa@8c110",
+    "assetFinder": {
+      "meshes": [
+        "04a7cbf2-38e1-45f0-a5b5-e026cbf07aaa@58041"
+      ],
+      "skeletons": [],
+      "textures": [],
+      "materials": [],
+      "scenes": [
+        "04a7cbf2-38e1-45f0-a5b5-e026cbf07aaa@8c110"
+      ]
+    },
+    "fbx": {
+      "preferLocalTimeSpan": false
+    }
+  }
+}

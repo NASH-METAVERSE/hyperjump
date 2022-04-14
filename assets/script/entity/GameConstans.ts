@@ -1,0 +1,331 @@
+import { _decorator, Component, Node } from "cc";
+const { ccclass, property } = _decorator;
+
+/**
+ * Predefined variables
+ * Name = GameConstans
+ * DateTime = Fri Oct 22 2021 17:10:52 GMT+0800 (中国标准时间)
+ * Author = yozorano
+ * FileBasename = GameConstans.ts
+ * FileBasenameNoExtension = GameConstans
+ * URL = db://assets/scripts/entity/GameConstans.ts
+ * ManualUrl = https://docs.cocos.com/creator/3.3/manual/zh/
+ *
+ */
+
+const GameConstans = {
+  CLIENTEVENT_LIST: {
+    ACTIVE_SOLAR_SYSTEM_BOARD: "activeSolarSystemBoard",
+    CHANG_TOOLTIP: "changeTooltip",
+    CHANGE_CHAIN: "changeChain",
+    SELECT_SOLAR_SYSTEM_TOOLTIP: "selectSolarSystemTooltip",
+    DRAW_MY_AREA: "drawMyArea",
+    HOVER_SHIP_CARD: "hoverShipCard",
+    CLICK_SHIP_CARD: "clickShipCard",
+    SELECT_SHIP_TOOLTIP: "selectShipTooltip",
+    CHANG_SHIP_TOOLTIP: "changeShipTooltip",
+    SELECT_SHIP_BOARD: "selectShipboard",
+    SELECT_SHIP_DETAIL_BOARD: "selectShipDetailboard",
+    CHANGE_JUMP_ROAD: "changeJumpRoad",
+    CHANGE_JUMP_TIMER: "changeJumpTimer",
+    SIGN_MAX_SCORE_SHIP: "signMaxScoreShip",
+    SOLAR_SYSTEM_ADD: "solarSystemAdd",
+    SOLAR_SYSTEM_SCALE: "solarSystemScale",
+    CHANGE_CARD_HOVER_STATUS: "changeCardHoverStatus",
+    CHANGE_CARD_PRESSED_STATUS: "changeCardPressedStatus",
+    RESET_STARMMAP_TOOLTIP: "resetStarmapTooltip",
+    RESET_STARMAP: "reset_starmap",
+    STOP_SHIP_COLLECT: "stopShipCollect",
+    CHANGE_SHIP_CARD_INFO: "changeShipCardInfo",
+    SOLAR_SYSTEM: {
+      HOVER_SOLAR_SYSTEM_TOOLTIP: "s-hoverSolarSystemTooltip",
+    },
+    PLANET: {
+      INIT_TARGET_SHIP_CARD: "initTargetShipCard",
+      HOVER_SHIP_CARD: "p_hoverShipCard",
+      CLICK_SHIP_CARD: "p_clickShipCard",
+      HOVER_SHIP_BOARD: "p_hoverShipboard",
+      CLICK_SHIP_BOARD: "p_clickShipboard",
+      CHANGE_CARD_HOVER_STATUS: "p_changeCardHoverStatus",
+      CHANGE_CARD_PRESSED_STATUS: "p_changeCardPressedStatus",
+    }
+  },
+  CLIENTEVENT_UI_LIST: {
+    TOAST: "toast",
+    MOVE_LEFT_BAR_CONTENT: "moveLeftBarContent",
+    ACTIVE_SHIP_BOARD_BUTTON: "activeShipBoardButton",
+    CHANGE_SHIP_BOARD_BUTTON: "changeShipBoardButton",
+    RESET_SHIP_BOARD_BUTTON: "resetShipBoardButton",
+    REFRESH_SHIP_BOARD_CONTENT: "refreshShipBoardContent",
+    CANCEL_INVISIBLE: "cancelInvisible",
+    BUTTON_ACTION: "buttonAction",
+    BACK_BUTTON_ACTION: "backButtonAction",
+    PROCESS_BAR_ACTION: "processBarAction",
+    MOVE_IN_TACTICS_AREA: "moveInTacticsArea",
+    CLICK_TACTICS_AREA: "clickTacticsArea",
+  },
+  CLIENTEVENT_USER_LIST: {
+    CHANGE_USER_OPERATION: "changeUserOperation",
+    CHANGE_PROCESS: "changeProcess",
+    BACK_PROCESS: "backProcess",
+    STOP_PROCESS: "stopProcess",
+    CANCEL_PROCESS: "cancelProcess",
+    JUMP: "u-jump",
+    OCCUPY: "u_occupy",
+    STOP_OCCUPY: "u_stop_occupy",
+    COLLECT: "u_collect",
+    STOP_COLLECT: "u_stop_collect",
+    PLUNDER: "u_plunder",
+  },
+  CLIENTEVENT_CAMERA_LIST: {
+    LOCK_CAMERA_RAY: "lockCameraRay",
+    CHANGE_CAMERA_STATUS: "lockCamera",
+    CHANGE_CAMERA_UI_STATUS: "changeUIParams",
+    CHANGE_STARMAP_CAMERA: "changeStarmapCamera",
+    STOP_MOUSE_WHEEL: "stopMouseWheel",
+    SYNC_CAMERA: "syncCamera",
+    SYNC_TRACK: "syncTrack",
+  },
+  CLIENTEVENT_DATA_LIST: {
+    SHARE_GAME_DATA: "shareGameData",
+    RUNTIME_DATA: "runtimeData",
+  },
+  CLIENTEVENT_SCENCE_LIST: {
+    CHANGE_STARMAP: "changeStarmap",
+    CHANG_SOLAR_SYSTEM: "changeSystem",
+    CHANG_PLANET: "changePlanet",
+    CHANGE_LAST_SCENE: "changeLastScene",
+    CHANGE_BACK_SCENE: "changeBackScene",
+    OPERATE_CHANGE_PLANET: "operateChangePlanet"
+  },
+  CLIENTEVENT_DEBUG_LIST: {
+    RESET_STARMAP: "resetStarmap",
+    CANVAS_MOVE: "canvasMove"
+  },
+  CLIENTEVENT_ANIMATION_LIST: {
+    MOUSE_HOVER_SOLAR_SYSTEM: "mouseHoverSolarSystem",
+    SHIP_LIST_DAIL_GROW: "shipListDailGrow",
+    TARGET_SHIP_LIST_DAIL_GROW: "targetShipListDailGrow",
+  },
+  CLIENTEVENT_TIPS_LIST: {
+    CHANGE_TIPS_CONTENT: "changeTipsContent",
+  },
+  CLIENTEVENT_DIALOG_LIST: {
+    CHANGE_DIALOG: "changeDialog",
+    CHANGE_SHIP_LOG: "changeShipLog",
+  },
+  CLIENTEVENT_TIME_LIST: {
+    INIT_INVISIBLE_TIME: "initInvisibleTime",
+    MONITOR_SHIP_STATUS: "monitorShipStatus",
+    INIT_BOARD_BUTTON_STATUS: "initBoardButtonStatus",
+    REFRESH_SHIP_STATUS: "refreshShipStatus",
+    MONITOR_SHIP_STATUS_1: "monitorShipStatus1",
+    MONITOR_SHIP_STATUS_2: "monitorShipStatus2",
+  },
+  LOOK_AT: "lookAt",
+  LOCK_CAMERA: "lockCamera",
+  UNLOCK_CAMERA: "unlockCamera",
+  SOLAR_SYSTEM_TYPE: {
+    UNEXPLORED: "0",
+    UNEXPLORED_OCCUPIED: "1",
+    EXPLORED_NOBODY: "2",
+    MY_SHIP: "3",
+    EXPLORED_OCCUPIED: "4",
+    MY_AREA: "5",
+    MAX_SCORE_SHIP: "6",
+  },
+  SHIP_STATUS: {
+    LOG_OUT: "-2",
+    SHIP_NULL: "-1",
+    SHIP_IDLE: "0",
+    SHIP_JUMP: "1",
+    SHIP_ATTACK: "2",
+    SHIP_FLIGHT: "3",
+    SHIP_FULL_COOLING: "4",
+    SHIP_JUMP_COOLING: "5",
+    SHIP_OCCUPYING: "6",
+    SHIP_MINING: "7",
+    SHIP_DEFAULT: "99",
+  },
+  TWEEN_TAG: {
+    COLLECT_BOARD_TAG: 100,
+    COLLECT_CARD_TAG: 1000,
+    TOAST: 10000,
+  },
+  CAMERA_POSITION: {
+    STARMAP_POSITION: {
+      UNLOCK: 0,
+      LOCK: 1,
+    },
+    SOLAR_SYSTEM_POSITION: {
+      MAX: 2,
+    },
+    PLANET_POSITION: {
+      MAX: 10,
+    }
+  },
+  MOUSE_TYPE: {
+    HOVER: 0,
+    CLICK: 1,
+  },
+  SCENCE_TYPE: {
+    NULL: -1,
+    STARMAP: 0,
+    SOLAR_SYSTEM: 1,
+    PLANET: 2,
+  },
+  DATA_TYPE: {
+    SUCCESS: "1",
+    FAIL: "0",
+  },
+  RESET_TYPE: {
+    NULL: -1,
+    ALL: 0,
+    JUMP_TO_FLIGHT: 1,
+    FLIGHT_TO_JUMP: 2,
+    SOLAR_SYSTEM: {
+      IN: 11,
+      OUT: 12,
+    },
+    PLANET: {
+      JUMP: 21,
+      FLIGHT: 31,
+      COLLECT: 41,
+      OCCUPY: 51,
+      PLUNDER: 61,
+      STOP_COLLECT: 71,
+      STOP_OCCUPY: 81,
+    },
+    RESUME: 99
+  },
+  PROCESS_TYPE: {
+    NULL: -1,
+    PLUNDER: {
+      IN: 0,
+      BEFORE_CONFIRM_TARGET: 1,
+      BEFORE_CONFIRM_TACTICS: 2,
+      FINISH: 3,
+    },
+    JUMP: {
+      IN: 0,
+      BEFORE_CONFIRM_PLANET: 1,
+      FINISH: 2,
+    },
+    OCCUPY: {
+      IN: 0,
+      CONFIRM_PLANET: 1,
+      FINISH: 2,
+    },
+    COLLECT: {
+      IN: 0,
+      CONFIRM_PLANET: 1,
+      FINISH: 2,
+    },
+  },
+  SHIP_LOG_TYPE: {
+    IDLE_OPERATE: 0,
+    JUMP_OPERATE: 1,
+    ATTACK_OPERATE: 2,
+    ATTACKED_OPERATE: 3,
+    FLIGHT_OPERATE: 4,
+    COLLECT_OPERATE: 5,
+    OCCUPY_OPERATE: 6,
+  },
+  DIALOG_TYPE: {
+    INFO: 0,
+    SELECT_BASE: 1,
+    SELECT_LARGE: 2,
+    REPORT: 3,
+    TACTICS: 4,
+    TIMEOUT: 5,
+    ACTION: {
+      NO: 10,
+      YES: 11,
+      CLOSE: 12,
+      JUMP_1: 20,
+      JUMP_2: 21,
+      JUMP_3: 22,
+      JUMP_4: 23,
+      FLIGHT_1: 30,
+      FLIGHT_2: 31,
+      FLIGHT_3: 32,
+      FLIGHT_4: 33,
+      OCCUPY_1: 40,
+      OCCUPY_2: 41,
+      OCCUPY_3: 42,
+      COLLECT_1: 50,
+      COLLECT_2: 51,
+      COLLECT_3: 52,
+      PLUNDER_1: 70,
+      PLUNDER_2: 71,
+      PLUNDER_3: 72,
+      PLUNDER_4: 74,
+    }
+  },
+  TIMER_TYPE: {
+    INVISIBLE_TIMER: 0,
+    INVISIBLE_COOL_TIMER: 1,
+    ATTACK_COOLING_TIMER: 2,
+    FULL_COOLING_TIMER: 4,
+    JUMP_COOLING_TIMER: 5,
+    OCCUPY_TIMER: 6,
+    COLLECT_TIMER: 7,
+    COLLECT_COOLING_TIMER: 8,
+  },
+  UI_POSITON: {
+    INIT_MY_BOARD_H: 436.5,
+    INIT_MY_BOARD_V: 294.05,
+    INIT_TARGET_BOARD_H: -436.5,
+    INIT_TARGET_BOARD_V: 292.82,
+    CLICKED_MY_BOARD_H: 870,
+    CLICKED_MY_BOARD_V: 294.05,
+    CLICKED_TARGET_BOARD_H: -870,
+    CLICKED_TARGET_BOARD_V: 292.82,
+    ATTACK_MY_BOARD_H: 681.5,
+    ATTACK_MY_BOARD_V: 294.05,
+    ATTACK_TARGET_BOARD_H: -681.5,
+    ATTACK_TARGET_BOARD_V: 292.82,
+  },
+  CHAIN_ID: {
+    ETH_MAINNET: "0x1",
+    ROPSTEN: "0x3",
+    RINKEBY: "0x4",
+    GOERLI: "0x5",
+    KOVAN: "0x2a",
+    BSC_MAINNET: "0x38",
+    BSC_TESTNET: "0x61"
+  },
+  TIPS_CONTENT: {
+    NULL: '',
+    INVISIBLE_TIMEOUT: 'CAPTION, YOUR @ INVISIBLE TIME IS RUNNING OUT.',
+    LOGOUT: "YOUR ACCOUNT IS ALREADY LOGGED IN ELSEWHERE.",
+    NO_ACCOUNT: "WE CAN'T FIND YOUR ACCOUNT.",
+    NOT_SUPPROT_METAMASK: "YOUR BROWSER MAY NOT SUPPORT {0}. PLEASE REFRESH OR SWITCH BROWSERS.",
+    NOT_SEND_METAMASK: "{0} TIMEOUT. PLEASE REFRESH OR SWITCH BROWSERS.",
+    SWITCH_CHAIN: "CURRENTLY ONLY BSC-TESTNET IS SUPPORTED. DO YOU WANT TO SWITCH TO BSC-TESTNET?",
+    ADD_CHAIN: "THE CHAIN HAS NOT BEEN ADDED TO WALLET.DO YOU WANT TO ADD BSC-TESTNET TO WALLET?",
+    SWITCH_CHAIN_MANUAL: "PLEASE CLICK YES AFTER SWITCH BINANCE WALLET CHAIN TO BSC-TESTNET.",
+    SWITCH_CHAIN_TIPS: "CURRENTLY ONLY BSC-TESTNET IS SUPPORTED.PLEASE SWITCH CHAIN TO BSC-TESTNET.",
+    SERVER_MAINTENANCE: "SERVER MAINTENANCE IS IN PROCESS. PLEASE WAIT.",
+    SERVER_ERROR: "INFORMATION IS LOST IN THE UNIVERSE.",
+    JUMP: "CAPTAIN, THE SHIP IS READY TO JUMP.\nTHE SHIP WAS ONLY INVISIBLE FOR 30 SECONDS\n PLEASE CONFIRM THE DESTINATION.",
+    CONFIRM_JUMP: "CAPTION, \nTHE SHIP IS READY TO HYPER JUMP.\n WE NEED YOUR CONFIRMATION.",
+    JUMPING: "CAPTAIN, THE SHIP IS JUMPING TO THE TARGET PLANET. \nCURRENTLY, THE SHIP CANNOT PERFORM OTHER OPERATIONS.",
+    FLIGHT: "CAPTAIN, THE SHIP IS READY TO FLIGHT. \nTHE SHIP WAS ONLY INVISIBLE FOR 30 SECONDS \nPLEASE CONFIRM THE DESTINATION.",
+    CONFIRM_FLIGHT: "CAPTION, \nTHE SHIP IS READY TO SPACE FLIGHT. \nWE NEED YOUR CONFIRMATION.",
+    FLIGHTING: "CAPTAIN, THE SHIP IS FLIGHTING TO THE TARGET PLANET. \nCURRENTLY, THE SHIP CANNOT PERFORM OTHER OPERATIONS.",
+    CONFIRM_COLLECT: "CAPTION, \nTHE SHIP IS READY TO COOLECT THE RESOURCE. \nTHE SHIP WAS ONLY INVISIBLE FOR 30 SECONDS \nWE NEED YOUR CONFIRMATION.",
+    STOP_COLLECT: "CAPTAIN, \nDO YOU WANT TO STOP COLLECTING MISSION?  \nWE NEED YOUR CONFIRMATION.",
+    COLLECTING: "CAPTAIN, THE SHIP IS ON A MISSION-COLLECTING. \nCURRENTLY, THE SHIP CANNOT PERFORM OTHER OPERATIONS.",
+    STOP_COLLECTING: "CAPTAIN, THHIP SHIP STOP COLLECTING MISSION.",
+    CONFIRM_OCCUPY: "CAPTION, \nTHE SHIP IS READY TO OCCUPY THIS PLANET. \nTHE SHIP WAS ONLY INVISIBLE FOR 30 SECONDS \nWE NEED YOUR CONFIRMATION.",
+    OCCUPING: "CAPTAIN, THE SHIP IS ON A MISSION-OCCUPY. \nCURRENTLY, THE SHIP CANNOT PERFORM OTHER OPERATIONS.",
+    STOP_OCCUPY: "CAPTAIN, \nDO YOU WANT TO STOP THE OCCPUATION MISSION?  \nTHE SHIP WAS ONLY INVISIBLE FOR 30 SECONDS \nWE NEED YOUR CONFIRMATION.",
+    STOP_OCCUPYING: "CAPTAIN, THE SHIP STOP OCCPUATION MISSION.",
+    PLUNDER: "CAPTAIN, THE SHIP IS READY TO PLUNDER. \nTHE SHIP WAS INVISIBLE FOR 30 SECONDS.",
+    CONFIRM_SELECT_PLUNDER: "CAPTAIN, PLEASE CONFIRM THE TARGET SHIP.",
+    CONFIRM_PLUNDER: "CAPTION, \nDO YOU WANT TO PLUNDER THIS SHIP?  \nWE NEED YOUR CONFIRMATION.",
+  }
+};
+
+export { GameConstans };

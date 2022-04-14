@@ -1,0 +1,16 @@
+{
+  "__type__": "cc.Material",
+  "_name": "2d_night_vision",
+  "_objFlags": 0,
+  "_native": "",
+  "_effectAsset": {
+    "__uuid__": "32eb0592-3bc3-4c20-a781-789b11624503"
+  },
+  "_techIdx": 0,
+  "_defines": [
+    {
+      "USE_TEXTURE": true
+    }
+  ],
+  "_props": []
+}

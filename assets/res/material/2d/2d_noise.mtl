@@ -1,0 +1,16 @@
+{
+  "__type__": "cc.Material",
+  "_name": "2d_noise",
+  "_objFlags": 0,
+  "_native": "",
+  "_effectAsset": {
+    "__uuid__": "322a340c-7ca3-4452-98f3-0fe2a830ba6b"
+  },
+  "_techIdx": 0,
+  "_defines": [
+    {
+      "USE_TEXTURE": true
+    }
+  ],
+  "_props": []
+}

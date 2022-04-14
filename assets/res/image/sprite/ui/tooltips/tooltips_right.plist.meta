@@ -1,0 +1,256 @@
+{
+  "ver": "1.0.6",
+  "importer": "sprite-atlas",
+  "imported": true,
+  "uuid": "f19ad9dd-994c-46fd-942f-e21205086076",
+  "files": [
+    ".plist",
+    ".json"
+  ],
+  "subMetas": {
+    "27054": {
+      "importer": "sprite-frame",
+      "uuid": "f19ad9dd-994c-46fd-942f-e21205086076@27054",
+      "displayName": "",
+      "id": "27054",
+      "name": "dail",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": true,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 210,
+        "trimY": 1,
+        "width": 360,
+        "height": 354,
+        "rawWidth": 360,
+        "rawHeight": 354,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "13121b2f-c5dc-4ba7-8793-7fe1284644ec@6c48a",
+        "atlasUuid": "f19ad9dd-994c-46fd-942f-e21205086076"
+      },
+      "ver": "1.0.9",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "528e8": {
+      "importer": "sprite-frame",
+      "uuid": "f19ad9dd-994c-46fd-942f-e21205086076@528e8",
+      "displayName": "",
+      "id": "528e8",
+      "name": "name_dail",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": true,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 732,
+        "trimY": 301,
+        "width": 312,
+        "height": 227,
+        "rawWidth": 312,
+        "rawHeight": 227,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "13121b2f-c5dc-4ba7-8793-7fe1284644ec@6c48a",
+        "atlasUuid": "f19ad9dd-994c-46fd-942f-e21205086076"
+      },
+      "ver": "1.0.9",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "6103f": {
+      "importer": "sprite-frame",
+      "uuid": "f19ad9dd-994c-46fd-942f-e21205086076@6103f",
+      "displayName": "",
+      "id": "6103f",
+      "name": "nest_line",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": true,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 1,
+        "trimY": 1,
+        "width": 431,
+        "height": 207,
+        "rawWidth": 431,
+        "rawHeight": 207,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "13121b2f-c5dc-4ba7-8793-7fe1284644ec@6c48a",
+        "atlasUuid": "f19ad9dd-994c-46fd-942f-e21205086076"
+      },
+      "ver": "1.0.9",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "75f20": {
+      "importer": "sprite-frame",
+      "uuid": "f19ad9dd-994c-46fd-942f-e21205086076@75f20",
+      "displayName": "",
+      "id": "75f20",
+      "name": "planet_circle",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 459,
+        "trimY": 363,
+        "width": 271,
+        "height": 255,
+        "rawWidth": 271,
+        "rawHeight": 255,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "13121b2f-c5dc-4ba7-8793-7fe1284644ec@6c48a",
+        "atlasUuid": "f19ad9dd-994c-46fd-942f-e21205086076"
+      },
+      "ver": "1.0.9",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "c9667": {
+      "importer": "sprite-frame",
+      "uuid": "f19ad9dd-994c-46fd-942f-e21205086076@c9667",
+      "displayName": "",
+      "id": "c9667",
+      "name": "planet_der",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 732,
+        "trimY": 1,
+        "width": 278,
+        "height": 298,
+        "rawWidth": 278,
+        "rawHeight": 298,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "13121b2f-c5dc-4ba7-8793-7fe1284644ec@6c48a",
+        "atlasUuid": "f19ad9dd-994c-46fd-942f-e21205086076"
+      },
+      "ver": "1.0.9",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "21cec": {
+      "importer": "sprite-frame",
+      "uuid": "f19ad9dd-994c-46fd-942f-e21205086076@21cec",
+      "displayName": "",
+      "id": "21cec",
+      "name": "planet_line",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": true,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 210,
+        "trimY": 363,
+        "width": 263,
+        "height": 247,
+        "rawWidth": 263,
+        "rawHeight": 247,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "13121b2f-c5dc-4ba7-8793-7fe1284644ec@6c48a",
+        "atlasUuid": "f19ad9dd-994c-46fd-942f-e21205086076"
+      },
+      "ver": "1.0.9",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "3b813": {
+      "importer": "sprite-frame",
+      "uuid": "f19ad9dd-994c-46fd-942f-e21205086076@3b813",
+      "displayName": "",
+      "id": "3b813",
+      "name": "ship_line",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": true,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 1,
+        "trimY": 434,
+        "width": 167,
+        "height": 164,
+        "rawWidth": 167,
+        "rawHeight": 164,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "13121b2f-c5dc-4ba7-8793-7fe1284644ec@6c48a",
+        "atlasUuid": "f19ad9dd-994c-46fd-942f-e21205086076"
+      },
+      "ver": "1.0.9",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "atlasTextureName": "tooltips_right.png",
+    "format": 3,
+    "uuid": "f19ad9dd-994c-46fd-942f-e21205086076",
+    "textureUuid": "13121b2f-c5dc-4ba7-8793-7fe1284644ec@6c48a"
+  }
+}

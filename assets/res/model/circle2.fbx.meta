@@ -1,0 +1,79 @@
+{
+  "ver": "2.1.10",
+  "importer": "fbx",
+  "imported": true,
+  "uuid": "c75520d7-bc61-40b4-abe1-99437fe6826d",
+  "files": [],
+  "subMetas": {
+    "58041": {
+      "importer": "gltf-mesh",
+      "uuid": "c75520d7-bc61-40b4-abe1-99437fe6826d@58041",
+      "displayName": "",
+      "id": "58041",
+      "name": "环体.mesh",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.1.0",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "e62c1": {
+      "importer": "gltf-mesh",
+      "uuid": "c75520d7-bc61-40b4-abe1-99437fe6826d@e62c1",
+      "displayName": "",
+      "id": "e62c1",
+      "name": "平面.001.mesh",
+      "userData": {
+        "gltfIndex": 1
+      },
+      "ver": "1.1.0",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "824c5": {
+      "importer": "gltf-scene",
+      "uuid": "c75520d7-bc61-40b4-abe1-99437fe6826d@824c5",
+      "displayName": "",
+      "id": "824c5",
+      "name": "circle2.prefab",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.12",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "imageMetas": [],
+    "legacyFbxImporter": false,
+    "redirect": "c75520d7-bc61-40b4-abe1-99437fe6826d@824c5",
+    "assetFinder": {
+      "meshes": [
+        "c75520d7-bc61-40b4-abe1-99437fe6826d@58041",
+        "c75520d7-bc61-40b4-abe1-99437fe6826d@e62c1"
+      ],
+      "skeletons": [],
+      "textures": [],
+      "materials": [],
+      "scenes": [
+        "c75520d7-bc61-40b4-abe1-99437fe6826d@824c5"
+      ]
+    },
+    "fbx": {
+      "preferLocalTimeSpan": false
+    }
+  }
+}

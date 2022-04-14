@@ -1,0 +1,39 @@
+{
+    "name": "ssr-shadertoy-converter",
+    "version": "1.0.0",
+    "main": "./main.js",
+    "description": "ShaderToy Converter",
+    "author": "SuperSuRaccoon",
+    "panels": {
+        "default": {
+            "title": "ShaderToy Converter",
+            "type": "dockable",
+            "main": "./panels/index.js",
+            "size": {
+                "width": 600,
+                "height": 300
+            }
+        }
+    },
+    "contributions": {
+        "assets": {},
+        "scene": {},
+        "menu": [
+            {
+                "path": "i18n:menu.extension",
+                "label": "i18n:ssr-shadertoy-converter",
+                "message": "open"
+            }
+        ],
+        "messages": {
+            "open": {
+                "methods": [
+                    "openPanel"
+                ]
+            }
+        }
+    },
+    "dependencies": {
+        "json2yaml": "^1.1.0"
+    }
+}

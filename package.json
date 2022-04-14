@@ -1,0 +1,16 @@
+{
+  "creator": {
+    "version": "3.4.2"
+  },
+  "dependencies": {
+    "@metamask/detect-provider": "^1.2.0",
+    "axios": "^0.24.0",
+    "eth-sig-util": "^3.0.1",
+    "ethereumjs-util": "^7.1.3",
+    "web3": "^1.6.0"
+  },
+  "name": "hyperjump_master",
+  "type": "3d",
+  "uuid": "5b4bc2a8-d542-4cbf-b4b8-79749d40841e",
+  "version": "3.4.2"
+}

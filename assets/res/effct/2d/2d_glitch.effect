@@ -1,0 +1,172 @@
+/**
+ * Date / 日期            : 20211230
+ * Ref / 引用             : https://www.shadertoy.com/view/lsfGD2
+ * Template / 模板        : v3::builtin-sprite
+ */
+CCEffect %{
+	  techniques: 
+    - 
+      passes: 
+        - 
+          vert: sprite-vs:vert
+          frag: sprite-fs:frag
+          depthStencilState: 
+            depthTest: false
+            depthWrite: false
+          blendState: 
+            targets: 
+              - 
+                blend: true
+                blendSrc: src_alpha
+                blendDst: one_minus_src_alpha
+                blendDstAlpha: one_minus_src_alpha
+          rasterizerState: 
+            cullMode: none
+          properties: 
+            iResolution: 
+              value: 
+                - 960
+                - 640
+            iMouse: 
+              value: 
+                - 0.5
+                - 0.5
+                - 0.5
+                - 0.5
+            alphaThreshold: 
+              value: 0.5
+
+}%
+
+CCProgram sprite-vs %{
+	precision highp float;
+	#include <cc-global>
+	#if USE_LOCAL
+	  #include <cc-local>
+	#endif
+	#if SAMPLE_FROM_RT
+	  #include <common>
+	#endif
+	in vec3 a_position;
+	in vec2 a_texCoord;
+	in vec4 a_color;
+  
+	out vec4 color;
+	out vec2 uv0;
+  
+	vec4 vert () {
+	  vec4 pos = vec4(a_position, 1);
+  
+	  #if USE_LOCAL
+		pos = cc_matWorld * pos;
+	  #endif
+  
+	  #if USE_PIXEL_ALIGNMENT
+		pos = cc_matView * pos;
+		pos.xyz = floor(pos.xyz);
+		pos = cc_matProj * pos;
+	  #else
+		pos = cc_matViewProj * pos;
+	  #endif
+  
+	  uv0 = a_texCoord;
+	  #if SAMPLE_FROM_RT
+		CC_HANDLE_RT_SAMPLE_FLIP(uv0);
+	  #endif
+	  color = a_color;
+  
+	  return pos;
+	}
+}%
+
+CCProgram sprite-fs %{
+	precision highp float;
+	#include <embedded-alpha>
+	#include <alpha-test>
+	#include <cc-global>
+  
+	in vec4 color;
+  
+	#if USE_TEXTURE
+	  in vec2 uv0;
+	  #pragma builtin(local)
+	  layout(set = 2, binding = 10) uniform sampler2D cc_spriteTexture;
+	#endif
+
+	uniform Uniforms {
+	vec4 iMouse;
+	vec2 iResolution;
+
+  	};
+	
+	float sat( float t ) {
+	return clamp( t, 0.0, 1.0 );
+	}
+	vec2 sat( vec2 t ) {
+	return clamp( t, 0.0, 1.0 );
+	}
+	float remap  ( float t, float a, float b ) {
+	return sat( (t - a) / (b - a) );
+	}
+	float linterp( float t ) {
+	return sat( 1.0 - abs( 2.0*t - 1.0 ) );
+	}
+	vec3 spectrum_offset( float t ) {
+    float t0 = 3.0 * t - 1.5;
+	return clamp( vec3( -t0, 1.0-abs(t0), t0), 0.0, 1.0);
+	}
+	float rand( vec2 n ) {
+  	return fract(sin(dot(n.xy, vec2(12.9898, 78.233)))* 43758.5453);
+	}
+	float srand( vec2 n ) {
+	return rand(n) * 2.0 - 1.0;
+	}
+	float mytrunc( float x, float num_levels ){
+	return floor(x*num_levels) / num_levels;
+	}
+	vec2 mytrunc( vec2 x, float num_levels ){
+	return floor(x*num_levels) / num_levels;
+	}
+	vec4 frag() {
+	vec4 ssr_frag_out;
+    float aspect = iResolution.x / iResolution.y;
+	vec2 uv = uv0;
+    // uv.y = 1.0 - uv.y;
+	float time = mod(cc_time[0], 32.0); 
+	float GLITCH = 0.1 + iMouse.x / iResolution.x;
+	float gnm = sat( GLITCH );
+	float rnd0 = rand( mytrunc( vec2(time, time), 6.0 ) );
+	float r0 = sat((1.0-gnm)*0.7 + rnd0);
+	float rnd1 = rand( vec2(mytrunc( uv.x, 10.0*r0 ), time) ); 
+	float r1 = 0.5 - 0.5 * gnm + rnd1;
+	r1 = 1.0 - max( 0.0, ((r1<1.0) ? r1 : 0.9999999) ); 
+	float rnd2 = rand( vec2(mytrunc( uv.y, 40.0*r1 ), time) ); 
+	float r2 = sat( rnd2 );
+	float rnd3 = rand( vec2(mytrunc( uv.y, 10.0*r0 ), time) );
+	float r3 = (1.0-sat(rnd3+0.8)) - 0.1;
+	float pxrnd = rand( uv + time );
+	float ofs = 0.05 * r2 * GLITCH * ( rnd0 > 0.5 ? 1.0 : -1.0 );
+	ofs += 0.5 * pxrnd * ofs;
+	uv.y += 0.1 * r3 * GLITCH;
+    const int NUM_SAMPLES = 10;
+    const float RCP_NUM_SAMPLES_F = 1.0 / float(NUM_SAMPLES);
+	vec4 sum = vec4(0.0);
+	vec3 wsum = vec3(0.0);
+	for( int i=0; i<NUM_SAMPLES; ++i )
+	{
+		float t = float(i) * RCP_NUM_SAMPLES_F;
+		uv.x = sat( uv.x + ofs * t );
+		vec4 samplecol = texture( cc_spriteTexture, uv, -10.0 );
+		vec3 s = spectrum_offset( t );
+		samplecol.rgb = samplecol.rgb * s;
+		sum += samplecol;
+		wsum += s;
+	}
+	sum.rgb /= wsum;
+	sum.a *= RCP_NUM_SAMPLES_F;
+	ssr_frag_out.a = sum.a;
+	ssr_frag_out.rgb = sum.rgb; 
+		return ssr_frag_out;
+	}
+  }%
+

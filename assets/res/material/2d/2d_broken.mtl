@@ -1,0 +1,16 @@
+{
+  "__type__": "cc.Material",
+  "_name": "2d_broken",
+  "_objFlags": 0,
+  "_native": "",
+  "_effectAsset": {
+    "__uuid__": "97936773-aebb-45a5-86ec-bbe4174b9059"
+  },
+  "_techIdx": 0,
+  "_defines": [
+    {
+      "USE_TEXTURE": true
+    }
+  ],
+  "_props": []
+}

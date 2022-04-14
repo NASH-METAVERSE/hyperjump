@@ -1,0 +1,13 @@
+{
+  "ver": "1.1.35",
+  "importer": "prefab",
+  "imported": true,
+  "uuid": "b60453f7-620b-4d7f-b686-ff6a4e1660e8",
+  "files": [
+    ".json"
+  ],
+  "subMetas": {},
+  "userData": {
+    "syncNodeName": "Starmap_solar_tooltip_right-buttom"
+  }
+}

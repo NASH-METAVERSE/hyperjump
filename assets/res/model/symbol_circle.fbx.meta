@@ -1,0 +1,61 @@
+{
+  "ver": "2.1.10",
+  "importer": "fbx",
+  "imported": true,
+  "uuid": "30e89467-242a-4097-a48e-e2aca0a1867d",
+  "files": [],
+  "subMetas": {
+    "c64f5": {
+      "importer": "gltf-mesh",
+      "uuid": "30e89467-242a-4097-a48e-e2aca0a1867d@c64f5",
+      "displayName": "",
+      "id": "c64f5",
+      "name": "solar_plane.mesh",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.1.0",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "c6f37": {
+      "importer": "gltf-scene",
+      "uuid": "30e89467-242a-4097-a48e-e2aca0a1867d@c6f37",
+      "displayName": "",
+      "id": "c6f37",
+      "name": "symbol_circle.prefab",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.12",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "imageMetas": [],
+    "legacyFbxImporter": false,
+    "redirect": "30e89467-242a-4097-a48e-e2aca0a1867d@c6f37",
+    "assetFinder": {
+      "meshes": [
+        "30e89467-242a-4097-a48e-e2aca0a1867d@c64f5"
+      ],
+      "skeletons": [],
+      "textures": [],
+      "materials": [],
+      "scenes": [
+        "30e89467-242a-4097-a48e-e2aca0a1867d@c6f37"
+      ]
+    },
+    "fbx": {
+      "preferLocalTimeSpan": false
+    }
+  }
+}

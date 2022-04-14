@@ -1,0 +1,61 @@
+{
+  "ver": "2.1.10",
+  "importer": "fbx",
+  "imported": true,
+  "uuid": "2bc1b3b8-c6fa-46cb-ab38-768a94fd4a8c",
+  "files": [],
+  "subMetas": {
+    "0a1f8": {
+      "importer": "gltf-mesh",
+      "uuid": "2bc1b3b8-c6fa-46cb-ab38-768a94fd4a8c@0a1f8",
+      "displayName": "",
+      "id": "0a1f8",
+      "name": "square：320_320.mesh",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.1.0",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "1e1e9": {
+      "importer": "gltf-scene",
+      "uuid": "2bc1b3b8-c6fa-46cb-ab38-768a94fd4a8c@1e1e9",
+      "displayName": "",
+      "id": "1e1e9",
+      "name": "Galaxy.prefab",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.12",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "imageMetas": [],
+    "legacyFbxImporter": false,
+    "redirect": "2bc1b3b8-c6fa-46cb-ab38-768a94fd4a8c@1e1e9",
+    "assetFinder": {
+      "meshes": [
+        "2bc1b3b8-c6fa-46cb-ab38-768a94fd4a8c@0a1f8"
+      ],
+      "skeletons": [],
+      "textures": [],
+      "materials": [],
+      "scenes": [
+        "2bc1b3b8-c6fa-46cb-ab38-768a94fd4a8c@1e1e9"
+      ]
+    },
+    "fbx": {
+      "preferLocalTimeSpan": false
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "__type__": "cc.Material",
+  "_name": "2d_teal",
+  "_objFlags": 0,
+  "_native": "",
+  "_effectAsset": {
+    "__uuid__": "b92a5c06-7286-447e-b88c-cfeb1b006610"
+  },
+  "_techIdx": 0,
+  "_defines": [
+    {
+      "USE_TEXTURE": true
+    }
+  ],
+  "_props": []
+}

@@ -1,0 +1,409 @@
+/**
+ * Date / 日期            : 20220225
+ * Ref / 引用             : Unknown
+ * Template / 模板        : v3::builtin-unlit
+ */
+
+CCEffect %{
+	  techniques: 
+    - 
+      name: opaque
+      passes: 
+        - 
+          vert: unlit-vs:vert
+          frag: unlit-fs:frag
+          properties: 
+            iResolution: 
+              value: 
+                - 960
+                - 640
+            iMouse: 
+              value: 
+                - 0.5
+                - 0.5
+                - 0.5
+                - 0.5
+            mainTexture: 
+              value: grey
+            tilingOffset: 
+              value: 
+                - 1
+                - 1
+                - 0
+                - 0
+            mainColor: 
+              value: 
+                - 1
+                - 1
+                - 1
+                - 1
+              editor: 
+                type: color
+            colorScale: 
+              value: 
+                - 1
+                - 1
+                - 1
+              target: colorScaleAndCutoff.xyz
+            alphaThreshold: 
+              value: 0.5
+              target: colorScaleAndCutoff.w
+              editor: 
+                parent: USE_ALPHA_TEST
+            color: 
+              target: mainColor
+              editor: 
+                visible: false
+            formuparam: 
+              value: 0.53
+            stepsize: 
+              value: 0.1
+            zoom: 
+              value: 0.8
+            tile: 
+              value: 0.85
+            speed: 
+              value: 0.01
+            brightness: 
+              value: 0.0015
+            darkmatter: 
+              value: 0.3
+            distfading: 
+              value: 0.73
+            saturation: 
+              value: 0.85
+          migrations: 
+            properties: 
+              mainColor: 
+                formerlySerializedAs: color
+    - 
+      name: transparent
+      passes: 
+        - 
+          vert: unlit-vs:vert
+          frag: unlit-fs:frag
+          depthStencilState: 
+            depthTest: true
+            depthWrite: false
+          blendState: 
+            targets: 
+              - 
+                blend: true
+                blendSrc: src_alpha
+                blendDst: one_minus_src_alpha
+                blendDstAlpha: one_minus_src_alpha
+          properties: 
+            iResolution: 
+              value: 
+                - 960
+                - 640
+            iMouse: 
+              value: 
+                - 0.5
+                - 0.5
+                - 0.5
+                - 0.5
+            mainTexture: 
+              value: grey
+            tilingOffset: 
+              value: 
+                - 1
+                - 1
+                - 0
+                - 0
+            mainColor: 
+              value: 
+                - 1
+                - 1
+                - 1
+                - 1
+              editor: 
+                type: color
+            colorScale: 
+              value: 
+                - 1
+                - 1
+                - 1
+              target: colorScaleAndCutoff.xyz
+            alphaThreshold: 
+              value: 0.5
+              target: colorScaleAndCutoff.w
+              editor: 
+                parent: USE_ALPHA_TEST
+            color: 
+              target: mainColor
+              editor: 
+                visible: false
+          migrations: 
+            properties: 
+              mainColor: 
+                formerlySerializedAs: color
+    - 
+      name: add
+      passes: 
+        - 
+          vert: unlit-vs:vert
+          frag: unlit-fs:frag
+          rasterizerState: 
+            cullMode: none
+          depthStencilState: 
+            depthTest: true
+            depthWrite: false
+          blendState: 
+            targets: 
+              - 
+                blend: true
+                blendSrc: src_alpha
+                blendDst: one
+                blendSrcAlpha: src_alpha
+                blendDstAlpha: one
+          properties: 
+            iResolution: 
+              value: 
+                - 960
+                - 640
+            iMouse: 
+              value: 
+                - 0.5
+                - 0.5
+                - 0.5
+                - 0.5
+            mainTexture: 
+              value: grey
+            tilingOffset: 
+              value: 
+                - 1
+                - 1
+                - 0
+                - 0
+            mainColor: 
+              value: 
+                - 1
+                - 1
+                - 1
+                - 1
+              editor: 
+                type: color
+            colorScale: 
+              value: 
+                - 1
+                - 1
+                - 1
+              target: colorScaleAndCutoff.xyz
+            alphaThreshold: 
+              value: 0.5
+              target: colorScaleAndCutoff.w
+              editor: 
+                parent: USE_ALPHA_TEST
+            color: 
+              target: mainColor
+              editor: 
+                visible: false
+          migrations: 
+            properties: 
+              mainColor: 
+                formerlySerializedAs: color
+    - 
+      name: alpha-blend
+      passes: 
+        - 
+          vert: unlit-vs:vert
+          frag: unlit-fs:frag
+          rasterizerState: 
+            cullMode: none
+          depthStencilState: 
+            depthTest: true
+            depthWrite: false
+          blendState: 
+            targets: 
+              - 
+                blend: true
+                blendSrc: src_alpha
+                blendDst: one_minus_src_alpha
+                blendSrcAlpha: src_alpha
+                blendDstAlpha: one_minus_src_alpha
+          properties: 
+            iResolution: 
+              value: 
+                - 960
+                - 640
+            iMouse: 
+              value: 
+                - 0.5
+                - 0.5
+                - 0.5
+                - 0.5
+            mainTexture: 
+              value: grey
+            tilingOffset: 
+              value: 
+                - 1
+                - 1
+                - 0
+                - 0
+            mainColor: 
+              value: 
+                - 1
+                - 1
+                - 1
+                - 1
+              editor: 
+                type: color
+            colorScale: 
+              value: 
+                - 1
+                - 1
+                - 1
+              target: colorScaleAndCutoff.xyz
+            alphaThreshold: 
+              value: 0.5
+              target: colorScaleAndCutoff.w
+              editor: 
+                parent: USE_ALPHA_TEST
+            color: 
+              target: mainColor
+              editor: 
+                visible: false
+          migrations: 
+            properties: 
+              mainColor: 
+                formerlySerializedAs: color
+
+}%
+
+CCProgram unlit-vs %{
+	precision highp float;
+	#include <input>
+	#include <cc-global>
+	#include <cc-local-batch>
+	#include <input>
+	#include <cc-fog-vs>
+  
+	#if USE_VERTEX_COLOR
+	  in lowp vec4 a_color;
+	  out lowp vec4 v_color;
+	#endif
+  
+	#if USE_TEXTURE
+	  out vec2 uv0;
+	  uniform TexCoords {
+		vec4 tilingOffset;
+	  };
+	#endif
+  
+	vec4 vert () {
+	  vec4 position;
+	  CCVertInput(position);
+  
+	  mat4 matWorld;
+	  CCGetWorldMatrix(matWorld);
+  
+	  #if USE_TEXTURE
+	  	uv0 = a_texCoord * tilingOffset.xy + tilingOffset.zw;
+		#if SAMPLE_FROM_RT
+		  CC_HANDLE_RT_SAMPLE_FLIP(uv0);
+		#endif
+	  #endif
+  
+	  #if USE_VERTEX_COLOR
+		v_color = a_color;
+	  #endif
+  
+	  CC_TRANSFER_FOG(matWorld * position);
+	  return cc_matProj * (cc_matView * matWorld) * position;
+	}
+}%
+
+CCProgram unlit-fs %{
+	precision highp float;
+	#include <output>
+	#include <cc-fog-fs>
+	#include <cc-global>
+  
+	#if USE_ALPHA_TEST
+	  #pragma define ALPHA_TEST_CHANNEL options([a, r, g, b])
+	#endif
+  
+	#if USE_TEXTURE
+	  in vec2 uv0;
+	  uniform sampler2D mainTexture;
+	#endif
+  
+	uniform Constant {
+	  vec4 mainColor;
+	  vec4 colorScaleAndCutoff;
+	  	vec4 iMouse;
+	vec2 iResolution;
+	float formuparam;
+	float stepsize;
+	float zoom;
+	float tile;
+	float speed;
+	float brightness;
+	float darkmatter;
+	float distfading;
+	float saturation;
+
+	};
+  
+	#if USE_VERTEX_COLOR
+	  in lowp vec4 v_color;
+	#endif
+
+	
+	#define iterations 17
+
+#define volsteps 20
+
+
+
+
+
+
+
+
+vec4 frag() {
+	vec4 ssr_frag_out;
+	vec2 uv=uv0-.5;
+	uv.y*=iResolution.y/iResolution.x;
+	vec3 dir=vec3(uv*zoom,1.);
+	float time=cc_time[0]*speed+.25;
+	float a1=.5+iMouse.x/iResolution.x*2.;
+	float a2=.8+iMouse.y/iResolution.y*2.;
+	mat2 rot1=mat2(cos(a1),sin(a1),-sin(a1),cos(a1));
+	mat2 rot2=mat2(cos(a2),sin(a2),-sin(a2),cos(a2));
+	dir.xz*=rot1;
+	dir.xy*=rot2;
+	vec3 from=vec3(1.,.5,0.5);
+	from+=vec3(time,0,-2.);
+	from.xz*=rot1;
+	from.xy*=rot2;
+	float s=0.1,fade=1.;
+	vec3 v=vec3(0.);
+	for (int r=0; r<volsteps; r++) {
+		vec3 p=from+s*dir*.5;
+		p = abs(vec3(tile)-mod(p,vec3(tile*2.))); 
+		float pa,a=pa=0.;
+		for (int i=0; i<iterations; i++) { 
+			p=abs(p)/dot(p,p)-formuparam; 
+			a+=abs(length(p)-pa); 
+			pa=length(p);
+		}
+		float dm=max(0.,darkmatter-a*a*.001); 
+		a*=a*a; 
+		if (r>6) fade*=1.-dm; 
+		v+=fade;
+		v+=vec3(s,s*s,s*s*s*s)*a*brightness*fade; 
+		fade*=distfading; 
+		s+=stepsize;
+	}
+	v=mix(vec3(length(v)),v,saturation); 
+	ssr_frag_out = vec4(v*.01,1.);	
+
+		#if USE_ALPHA_TEST
+		if (ssr_frag_out.ALPHA_TEST_CHANNEL < colorScaleAndCutoff.w) discard;
+		#endif
+		return ssr_frag_out;
+}
+}%
+

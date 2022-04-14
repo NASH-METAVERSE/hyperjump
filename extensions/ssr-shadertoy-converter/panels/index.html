@@ -1,0 +1,74 @@
+<div class="container" id="ui">
+    <h3 class="wrapper" style="text-align: left; padding-left: 10px;">使用方式:</h3>
+    <div style="width: 100%; height: 30%;">
+        <p style="padding-left: 10px;">
+            1. 将 Shader 代码 (片段着色器) 粘贴至下方的文本框中 <br>
+            2. 选择需要导出的特效文件模板 <br>
+            3. 点击导出特效按钮即可 <br>
+            <br>
+            生成的特效文件，处于 Creator 的编辑器资源文件夹中 <br>
+        </p>
+        <hr/>
+        <h3 class="wrapper" style="text-align: left; padding-left: 5px;">特效转换:</h3>
+
+        <ui-textarea slot="content" id="textArea" value="" tabindex="0" placeholder="请将 Shader 代码粘贴至此处"></ui-textarea>
+
+        <ui-prop style="text-align: left; padding-left: 5px;" tooltip="请输入特效的名称，如为空则使用时间戳作为名称">
+            <ui-label slot="label">特效名称</ui-label>
+            <ui-input slot="content" id="nameInput" placeholder="ssr_shader_converter"></ui-input>
+        </ui-prop>
+
+        <ui-prop style="text-align: left; padding-left: 5px;" tooltip="请输入待转换特效的来源，方便使用者后续特效的查找和维护">
+            <ui-label slot="label">引用链接</ui-label>
+            <ui-input slot="content" id="refInput" placeholder="http://......"></ui-input>
+        </ui-prop>
+
+        <ui-prop style="text-align: left; padding-left: 5px;" tooltip="请选择需要导出的特效使用的对象模板">
+            <ui-label slot="label">导出模板</ui-label>
+            <ui-select slot="content" id="templateOption" value="1">
+                <option value="1">v3::builtin-sprite</option>
+                <option value="2">v3::builtin-unlit</option>
+            </ui-select>
+        </ui-prop>
+
+        <ui-prop style="text-align: left; padding-left: 5px;" tooltip="将特效中的部分 UV 操作转为使用 Creator 内置 uv，默认保持开启">
+            <ui-label slot="label">自动修正 UV</ui-label>
+            <ui-checkbox slot="content" id="cbFixUV" readonly value="true"></ui-checkbox>
+        </ui-prop>
+
+        <ui-prop style="text-align: left; padding-left: 5px;" tooltip="将特效中的宏定义变量提取为 Creator 格式的变量，默认保持开启">
+            <ui-label slot="label">自动提取宏变量</ui-label>
+            <ui-checkbox slot="content" id="cbParseDefine" value="true"></ui-checkbox>
+        </ui-prop>
+
+        <ui-prop style="text-align: left; padding-left: 5px;" tooltip="自动提取 Uniform 变量" tooltip="将特效中的 Uniform 参数提取为 Creator 格式的变量，默认保持开启">
+            <ui-label slot="label">自动提取 Uniform 变量</ui-label>
+            <ui-checkbox slot="content" id="cbParseUniforms" value="true"></ui-checkbox>
+        </ui-prop>
+
+        <ui-prop style="text-align: left; padding-left: 5px;" tooltip="将特效中的全局变量提取为 Creator 格式的变量，默认保持开启">
+            <ui-label slot="label">自动提取全局变量</ui-label>
+            <ui-checkbox slot="content" id="cbParseGlobalUniforms" value="true"></ui-checkbox>
+        </ui-prop>
+
+        <ui-prop style="text-align: left; padding-left: 5px;" tooltip="如果特效需要使用在不规则带透明通道对象上，可以尝试开启此项目">
+            <ui-label slot="label">使用主纹理 alpha 通道</ui-label>
+            <ui-checkbox slot="content" id="cbFixAlpha" value="false"></ui-checkbox>
+        </ui-prop>
+
+        <ui-prop style="text-align: left; padding-left: 5px;" tooltip="仅推荐 Procedural 类型特效使用，如果需要去除特效的背景，可以尝试开启此项目">
+            <ui-label slot="label">动态透明背景</ui-label>
+            <ui-checkbox slot="content" id="cbAutolpha" value="false"></ui-checkbox>
+        </ui-prop>
+
+        <ui-prop style="text-align: left; padding-left: 5px;" tooltip="仅推荐 Procedural 类型特效使用，如果需要去除特效的背景，可以尝试开启此项目">
+            <ui-label slot="label">强制 UV 垂直翻转</ui-label>
+            <ui-checkbox slot="content" id="cbFixUVFlipY" value="false"></ui-checkbox>
+        </ui-prop>
+
+        <div style="padding-top: 10px; width: 100%;">
+            <ui-button id="btn" class="blue" style="width: 100%; font-size:small;" tabindex="-1">
+                生成 Shader: .material + .effect
+            </ui-button>
+        </div>
+    </div>

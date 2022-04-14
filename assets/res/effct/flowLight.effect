@@ -1,0 +1,109 @@
+CCEffect %{
+  techniques:
+  - passes:
+    - vert: sprite-vs:vert
+      frag: sprite-fs:frag
+      depthStencilState:
+        depthTest: false
+        depthWrite: false
+      blendState:
+        targets:
+        - blend: true
+          blendSrc: src_alpha
+          blendDst: one_minus_src_alpha
+          blendDstAlpha: one_minus_src_alpha
+      rasterizerState:
+        cullMode: none
+      properties:
+        alphaThreshold: { value: 0.5 }
+        FlowColor: { value: [1,1,1,1], editor: { type: color}}
+        FlowPos: { value: [0,0] }
+        Size: { value: 0.5}
+        Angle: { value: 45}
+        Smooth: { value: 0.5}
+        Intensity: { value: 0.5}
+        ColorIntensity: { value: 0.5}
+}%
+
+CCProgram sprite-vs %{
+  precision highp float;
+  #include <cc-global>
+  #if USE_LOCAL
+    #include <cc-local>
+  #endif
+  #if SAMPLE_FROM_RT
+    #include <common>
+  #endif
+  in vec3 a_position;
+  in vec2 a_texCoord;
+  in vec4 a_color;
+
+  out vec4 color;
+  out vec2 uv0;
+
+  vec4 vert () {
+    vec4 pos = vec4(a_position, 1);
+
+    #if USE_LOCAL
+      pos = cc_matWorld * pos;
+    #endif
+
+    #if USE_PIXEL_ALIGNMENT
+      pos = cc_matView * pos;
+      pos.xyz = floor(pos.xyz);
+      pos = cc_matProj * pos;
+    #else
+      pos = cc_matViewProj * pos;
+    #endif
+
+    uv0 = a_texCoord;
+    #if SAMPLE_FROM_RT
+      CC_HANDLE_RT_SAMPLE_FLIP(uv0);
+    #endif
+    color = a_color;
+
+    return pos;
+  }
+}%
+
+CCProgram sprite-fs %{
+  precision highp float;
+  #include <embedded-alpha>
+  #include <alpha-test>
+
+  in vec4 color;
+
+  uniform Clips {
+    vec4  FlowColor;
+    vec2  FlowPos;
+    float Size;
+    float Angle;
+    float Smooth;
+    float Intensity;
+    float ColorIntensity;
+	};
+
+  #if USE_TEXTURE
+    in vec2 uv0;
+    #pragma builtin(local)
+    layout(set = 2, binding = 10) uniform sampler2D cc_spriteTexture;
+  #endif
+
+  vec4 FlowLight_main(vec4 MainColor, vec2 UV, vec2 Pos, float Size, float Angle, float Smooth, float Intensity, vec4 Color, float ColorIntensity)
+	  {
+	        UV = UV - vec2(Pos);
+	        float a = atan(UV.y, UV.x) + Angle;
+	        float r = 3.1415;
+	        float d = cos(floor(0.5 + a / r) * r - a) * length(UV);
+	        Size *= 0.1;
+	        Smooth *= 0.1;
+	        float dist = 1.0 - smoothstep(Size, Size + Smooth, d);
+	        MainColor.rgb += ((dist * Intensity) * Color.rgb) * ColorIntensity;
+	        return MainColor;
+	  }
+
+  vec4 frag () {
+   return FlowLight_main(texture(cc_spriteTexture, uv0), uv0, FlowPos, Size, Angle, Smooth, Intensity, FlowColor, ColorIntensity);
+  }
+  
+}%
